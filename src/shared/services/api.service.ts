@@ -59,8 +59,8 @@ export class ApiService implements IApiService {
       .then((res: IApiTechnologiesResponse) => res.data);
   }
 
-  public async getSkills(): Promise<IContent[]> {
-    return axios.get(`https://www.api.tncreate.pt/v1.0/pt/tiagonolasco/content_skills?sort=order&direction=ASC`)
+  public async getFoundations(): Promise<IContent[]> {
+    return axios.get(`https://www.api.tncreate.pt/v1.0/pt/tiagonolasco/content_foundations?sort=order&direction=ASC`)
       .then(this.navigateAxios)
       .then((res: IApiContentGroupResponse) => res.data);
   }

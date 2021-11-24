@@ -47,7 +47,7 @@ export default class About extends Component<IAboutProps, IAboutState> {
   }
 
   async loadSkills(): Promise<void> {
-    const skills: IContent[] = await ApiService.getInstance().getSkills();
+    const skills: IContent[] = await ApiService.getInstance().getFoundations();
     this.setState({ skills });
   }
 
@@ -64,7 +64,7 @@ export default class About extends Component<IAboutProps, IAboutState> {
       </div>) : null;
   }
 
-  getSkillsHtml(skills: IContent[]): JSX.Element[] {
+  getFoundationsHtml(skills: IContent[]): JSX.Element[] {
     return skills && skills.map((skill: IContent, index: number) => {
       return (
         <div key={`about-skill-${index}`} className={styles["__skill"]}>
@@ -82,7 +82,7 @@ export default class About extends Component<IAboutProps, IAboutState> {
         <div className={styles['__info']}>
           <div className="theme-color title">{this.state.title}</div>
           <div dangerouslySetInnerHTML={{__html: this.state.description}}></div>
-          <div className={styles["__skills"]}>{this.getSkillsHtml(this.state.skills)}</div>
+          <div className={styles["__skills"]}>{this.getFoundationsHtml(this.state.skills)}</div>
         </div>
       </div>
     )
