@@ -1,0 +1,29 @@
+@import "../../styles/settings/index";
+
+.technologies-component {
+
+  display: flex;
+  flex-flow: row;
+
+  >.__info {
+    width: 60%;
+
+    .__technologies {
+      display: flex;
+      flex-flow: row;
+      flex-wrap: wrap;
+      margin: 0 -5px;
+
+      >.__technology {
+        margin: 0 5px;
+      }
+    }
+
+  }
+
+  >.__canvas {
+    flex: 1;
+    margin-left: 40px;
+  }
+
+}
