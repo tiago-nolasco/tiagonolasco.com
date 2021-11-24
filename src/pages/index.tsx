@@ -4,7 +4,7 @@ import Head from "next/head";
 
 import Homepage from "./homepage/";
 import About from "./about/";
-import Technologies from "./technologies";
+import Skills from "./skills";
 import Timeline from "./timeline";
 import Projects from "./projects/";
 import Contacts from "./contacts/";
@@ -68,7 +68,7 @@ export default class Index extends Component {
         <main>
           <Homepage />
           <About />
-          <Technologies />
+          <Skills />
           <Timeline />
           <Projects />
           <Contacts />

@@ -1,5 +1,5 @@
 import { IContent } from "./IContent";
 
-export interface IContentTechnologies extends IContent {
+export interface IContentSkills extends IContent {
   score: number;
 }

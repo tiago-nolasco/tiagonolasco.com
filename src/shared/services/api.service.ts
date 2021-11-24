@@ -8,12 +8,12 @@ import { IApiContentResponse } from "./model/IApiContentResponse";
 import { IApiSocialResponse } from "./model/IApiSocialResponse";
 import { ISeo } from '../model/ISeo';
 import { IContent } from '../model/IContent';
-import { IContentTechnologies } from "../model/IContentTechnologies";
+import { IContentSkills } from "../model/IContentSkills";
 import { IContentTimeline } from "../model/IContentTimeline";
 import { IContentProjects } from "../model/IContentProjects";
 import { II18n } from '../model/II18n';
 import { ISocial } from '../model/ISocial';
-import { IApiTechnologiesResponse } from './model/IApiTechnologiesResponse';
+import { IApiSkillsResponse } from './model/IApiSkillsResponse';
 import { IApiTimelineResponse } from './model/IApiTimelineResponse';
 import { IApiProjectsResponse } from './model/IApiProjectsResponse';
 import { IApiContentGroupResponse } from './model/IApiContentGroupResponse';
@@ -53,10 +53,10 @@ export class ApiService implements IApiService {
       .then((res: IApiContentResponse) => res.data);
   }
 
-  public async getTechnologies(): Promise<IContentTechnologies[]> {
-    return axios.get(`https://www.api.tncreate.pt/v1.0/pt/tiagonolasco/content_technologies?fields=score&sort=order&direction=ASC`)
+  public async getSkills(): Promise<IContentSkills[]> {
+    return axios.get(`https://www.api.tncreate.pt/v1.0/pt/tiagonolasco/content_skills?fields=score&sort=order&direction=ASC`)
       .then(this.navigateAxios)
-      .then((res: IApiTechnologiesResponse) => res.data);
+      .then((res: IApiSkillsResponse) => res.data);
   }
 
   public async getFoundations(): Promise<IContent[]> {

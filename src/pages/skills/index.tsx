@@ -1,32 +1,32 @@
 import { Component } from "react";
 import Chart from 'chart.js/auto';
 
-import styles from "./technologies.module.scss";
+import styles from "./skills.module.scss";
 
 import { ApiService } from "../../shared/services/api.service";
 import { ContentTagEnum } from "../../shared/model/ContentTagEnum";
-import { IContentTechnologies } from "../../shared/model/IContentTechnologies";
+import { IContentSkills } from "../../shared/model/IContentSkills";
 import { IContent } from "../../shared/model/IContent";
 
-interface ITechnologiesProps {}
-interface ITechnologiesState {
+interface ISkillsProps {}
+interface ISkillsState {
   title: string;
   description: string;
-  technologies: IContentTechnologies[];
+  skills: IContentSkills[];
 }
 
-export default class Technologies extends Component<ITechnologiesProps, ITechnologiesState> {
+export default class Skills extends Component<ISkillsProps, ISkillsState> {
 
-  chartId = "TechnologiesChart";
+  chartId = "SkillsChart";
   state = {
     title: "",
     description: "",
-    technologies: [] as IContentTechnologies[]
+    skills: [] as IContentSkills[]
   }
 
   async componentDidMount(): Promise<void> {
     this.loadTechnology();
-    await this.loadTechnologies();
+    await this.loadSkills();
     this.mountChart();
   }
 
@@ -38,9 +38,9 @@ export default class Technologies extends Component<ITechnologiesProps, ITechnol
     });
   }
 
-  async loadTechnologies(): Promise<void> {
-    const technologies: IContentTechnologies[] = await ApiService.getInstance().getTechnologies();
-    this.setState({ technologies });
+  async loadSkills(): Promise<void> {
+    const skills: IContentSkills[] = await ApiService.getInstance().getSkills();
+    this.setState({ skills });
   }
 
   mountChart(): void {
@@ -50,10 +50,10 @@ export default class Technologies extends Component<ITechnologiesProps, ITechnol
       type: "radar",
       // type: "polarArea",
       data: {
-        labels: this.state.technologies.map((technologie: IContentTechnologies) => technologie.title),
+        labels: this.state.skills.map((technologie: IContentSkills) => technologie.title),
         datasets: [
           {
-            data: this.state.technologies.map((technologie: IContentTechnologies) => +technologie.score),
+            data: this.state.skills.map((technologie: IContentSkills) => +technologie.score),
             backgroundColor: "rgba(11, 120, 160, 0.2)",
             borderColor: "rgba(11, 120, 160, 0.5)",
           },
@@ -75,19 +75,19 @@ export default class Technologies extends Component<ITechnologiesProps, ITechnol
     });
   }
 
-  getTechnologiesHtml(tecnologies: IContentTechnologies[]): JSX.Element[] {
-    return tecnologies.map((tecnology: IContentTechnologies) => (
+  getSkillsHtml(tecnologies: IContentSkills[]): JSX.Element[] {
+    return tecnologies.map((tecnology: IContentSkills) => (
       <span className={styles["__technology"]}>{tecnology.title}</span>
     ));
   }
 
   render() {
     return (
-      <div className={`container -offset-sides -offset-tops ${styles["technologies-component"]}`}>
+      <div className={`container -offset-sides -offset-tops ${styles["skills-component"]}`}>
         <div className={styles['__info']}>
           <div className="theme-color title">{this.state.title}</div>
           <div className={styles["__description"]} dangerouslySetInnerHTML={{__html: this.state.description}}></div>
-          {/* <div className={styles["__technologies"]}>{this.getTechnologiesHtml(this.state.technologies)}</div> */}
+          {/* <div className={styles["__skills"]}>{this.getSkillsHtml(this.state.skills)}</div> */}
         </div>
         <div className={styles["__canvas"]}>
           <canvas id={this.chartId} width="400" height="400"></canvas>
