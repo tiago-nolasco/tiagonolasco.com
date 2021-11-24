@@ -1,0 +1,21 @@
+# OS
+**/.DS_Store
+
+# IDE
+**/.idea
+**/.vscode
+**/nbproject
+**/.code-workspace
+
+# NPM
+**/node_modules
+
+# Distribution output
+**/dist
+
+build
+CUSTOM_VARS
+BuildDeployWeb.sh
+meetings-deploy
+lerna-debug.log
+packages/storybook/storybook-static/
