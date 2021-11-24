@@ -31,7 +31,7 @@ export default class Skills extends Component<ISkillsProps, ISkillsState> {
   }
 
   async loadTechnology(): Promise<void> {
-    const data: IContent = await ApiService.getInstance().getContent(ContentTagEnum.TECHNOLOGY);
+    const data: IContent = await ApiService.getInstance().getContent(ContentTagEnum.SKILLS);
     this.setState({
       title: data.title,
       description: data.description
