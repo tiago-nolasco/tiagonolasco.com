@@ -19,3 +19,4 @@ BuildDeployWeb.sh
 meetings-deploy
 lerna-debug.log
 packages/storybook/storybook-static/
+**/.next
