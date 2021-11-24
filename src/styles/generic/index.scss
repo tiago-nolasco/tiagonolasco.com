@@ -1,0 +1,47 @@
+
+.theme-color {
+  color: $ColorBlueChill;
+}
+
+.title {
+  position: relative;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 23px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+
+  &:after {
+    position: absolute;
+    content: "";
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-image: linear-gradient(to right, $ColorBlueChill, transparent);
+    opacity: 1;
+  }
+}
+
+.sub-title {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+
+  &.-offset-tops {
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  &.-offset-sides {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+
+}
