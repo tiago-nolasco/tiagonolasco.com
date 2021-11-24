@@ -1,0 +1,21 @@
+
+.image-component {
+  width: 100%;
+  background-position-y: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  &.-contain {
+    background-size: contain;
+  }
+
+  >.__ratio {
+    width: 100%;
+    height: auto;
+
+    &.-portrait {
+      transform: rotate(90deg);
+    }
+  }
+
+}
