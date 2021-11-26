@@ -3,7 +3,8 @@ import Chart from 'chart.js/auto';
 
 import styles from "./skills.module.scss";
 
-import { ApiService } from "../../shared/services/api.service";
+import apiService from "../../shared/services/api.service";
+
 import { ContentTagEnum } from "../../shared/model/ContentTagEnum";
 import { IContentSkills } from "../../shared/model/IContentSkills";
 import { IContent } from "../../shared/model/IContent";
@@ -31,7 +32,7 @@ export default class Skills extends Component<ISkillsProps, ISkillsState> {
   }
 
   async loadTechnology(): Promise<void> {
-    const data: IContent = await ApiService.getInstance().getContent(ContentTagEnum.SKILLS);
+    const data: IContent = await apiService.getContent(ContentTagEnum.SKILLS);
     this.setState({
       title: data.title,
       description: data.description
@@ -39,7 +40,7 @@ export default class Skills extends Component<ISkillsProps, ISkillsState> {
   }
 
   async loadSkills(): Promise<void> {
-    const skills: IContentSkills[] = await ApiService.getInstance().getSkills();
+    const skills: IContentSkills[] = await apiService.getSkills();
     this.setState({ skills });
   }
 

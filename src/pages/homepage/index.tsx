@@ -4,9 +4,9 @@ import styles from "./homepage.module.scss";
 
 import Image from "../../shared/components/Image";
 
+import apiService from "../../shared/services/api.service";
 import websiteStore from '../../shared/store/website.store';
 
-import { ApiService } from "../../shared/services/api.service";
 import { ContentTagEnum } from "../../shared/model/ContentTagEnum";
 import { IContentMedia } from "../../shared/model/IContentMedia";
 import { ImageRatioEnum } from "../../shared/model/ImageRatioEnum";
@@ -47,7 +47,7 @@ export default class Homepage extends Component<IHomepageProps, IHomepageState> 
 
   async loadHomepage(): Promise<void> {
 
-    const data: IContent = await ApiService.getInstance().getContent(ContentTagEnum.HOMEPAGE);
+    const data: IContent = await apiService.getContent(ContentTagEnum.HOMEPAGE);
     const image: IContentMedia = data.images?.find((img: IContentMedia) => !!img.main);
     const cv: IContentMedia = data.documents?.find((doc: IContentMedia) => !!doc.title);
 
@@ -61,7 +61,7 @@ export default class Homepage extends Component<IHomepageProps, IHomepageState> 
   }
 
   async loadSocial(): Promise<void> {
-    const social: ISocial[] = await ApiService.getInstance().getSocial();
+    const social: ISocial[] = await apiService.getSocial();
     websiteStore.social = social;
   }
 

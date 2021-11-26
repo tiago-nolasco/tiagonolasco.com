@@ -9,9 +9,9 @@ import Timeline from "./timeline";
 import Projects from "./projects/";
 import Contacts from "./contacts/";
 
+import apiService from "../shared/services/api.service";
 import websiteStore from "../shared/store/website.store";
 
-import { ApiService } from "../shared/services/api.service";
 import { ISeo } from "../shared/model/ISeo";
 import { ISocial } from "../shared/model/ISocial";
 
@@ -35,17 +35,17 @@ export default class Index extends Component {
   }
 
   async loadSocial(): Promise<void> {
-    const social: ISocial[] = await ApiService.getInstance().getSocial();
+    const social: ISocial[] = await apiService.getSocial();
     websiteStore.social = social;
   }
 
   async loadSeo(): Promise<void> {
-    const seo: ISeo = await ApiService.getInstance().getSeo();
+    const seo: ISeo = await apiService.getSeo();
     websiteStore.seo = seo;
   }
 
   async loadI18n(): Promise<void> {
-    const i18n = await ApiService.getInstance().getI18n();
+    const i18n = await apiService.getI18n();
     websiteStore.i18n = i18n;
   }
 

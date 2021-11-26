@@ -2,13 +2,13 @@ import { Component } from "react";
 
 import styles from "./projects.module.scss";
 
-import Image from "../../shared/components/Image";
+import apiService from "../../shared/services/api.service";
+import websiteStore from "../../shared/store/website.store";
 
-import { ApiService } from "../../shared/services/api.service";
+import Image from "../../shared/components/Image";
 import { IContentMedia } from "../../shared/model/IContentMedia";
 import { ImageRatioEnum } from "../../shared/model/ImageRatioEnum";
 import { IContentProjects } from "../../shared/model/IContentProjects";
-import websiteStore from "../../shared/store/website.store";
 import { IContent } from "../../shared/model/IContent";
 import { ContentTagEnum } from "../../shared/model/ContentTagEnum";
 
@@ -35,13 +35,13 @@ export default class Projects extends Component<IProjectsProps, IProjectsState> 
   }
 
   async loadMainProjects(): Promise<void> {
-    const projects: IContentProjects[] = await ApiService.getInstance().getProjects();
+    const projects: IContentProjects[] = await apiService.getProjects();
     this.setState({ projects });
   }
 
   async loadMoreProjects(): Promise<void> {
 
-    const data: IContent = await ApiService.getInstance().getContent(ContentTagEnum.PROJECTS);
+    const data: IContent = await apiService.getContent(ContentTagEnum.PROJECTS);
 
     this.setState({
       title: data.title,

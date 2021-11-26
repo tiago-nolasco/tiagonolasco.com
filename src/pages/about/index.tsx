@@ -1,9 +1,10 @@
 import { Component } from 'react';
 
+import apiService from "../../shared/services/api.service";
+
 import styles from "./about.module.scss";
 import { IContentMedia } from '../../shared/model/IContentMedia';
 import { IContent } from '../../shared/model/IContent';
-import { ApiService } from '../../shared/services/api.service';
 import { ContentTagEnum } from "../../shared/model/ContentTagEnum";
 import Image from '../../shared/components/Image';
 import { ImageRatioEnum } from '../../shared/model/ImageRatioEnum';
@@ -36,7 +37,7 @@ export default class About extends Component<IAboutProps, IAboutState> {
 
   async loadAbout(): Promise<void> {
 
-    const data: IContent = await ApiService.getInstance().getContent(ContentTagEnum.ABOUT);
+    const data: IContent = await apiService.getContent(ContentTagEnum.ABOUT);
     const image: IContentMedia = data.images?.find((img: IContentMedia) => !!img.main);
 
     this.setState({
@@ -47,7 +48,7 @@ export default class About extends Component<IAboutProps, IAboutState> {
   }
 
   async loadFoundations(): Promise<void> {
-    const foundations: IContent[] = await ApiService.getInstance().getFoundations();
+    const foundations: IContent[] = await apiService.getFoundations();
     this.setState({ foundations });
   }
 

@@ -2,8 +2,9 @@ import { Component } from "react";
 
 import styles from "./timeline.module.scss";
 
+import apiService from "../../shared/services/api.service";
 import websiteStore from '../../shared/store/website.store';
-import { ApiService } from "../../shared/services/api.service";
+
 import { IContentTimeline } from "../../shared/model/IContentTimeline";
 
 const enum EventTypeEnum {
@@ -38,17 +39,17 @@ export default class Timeline extends Component<ITimelineProps, ITimelineState> 
   }
 
   async loadPersonal(): Promise<void> {
-    const personal: IContentTimeline[] = await ApiService.getInstance().getPersonal();
+    const personal: IContentTimeline[] = await apiService.getPersonal();
     this.setState({ personal });
   }
 
   async loadProfessional(): Promise<void> {
-    const professional: IContentTimeline[] = await ApiService.getInstance().getProfessional();
+    const professional: IContentTimeline[] = await apiService.getProfessional();
     this.setState({ professional });
   }
 
   async loadAcademy(): Promise<void> {
-    const academy: IContentTimeline[] = await ApiService.getInstance().getAcademy();
+    const academy: IContentTimeline[] = await apiService.getAcademy();
     this.setState({ academy });
   }
 

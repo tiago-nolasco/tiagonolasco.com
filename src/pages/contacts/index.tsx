@@ -2,12 +2,13 @@ import { Component } from 'react';
 
 import styles from "./contacts.module.scss";
 
+import apiService from "../../shared/services/api.service";
 import websiteStore from "../../shared/store/website.store";
+
 import { ISocial } from '../../shared/model/ISocial';
 import { ISeo } from '../../shared/model/ISeo';
 import { IContent } from '../../shared/model/IContent';
 import { ContentTagEnum } from '../../shared/model/ContentTagEnum';
-import { ApiService } from '../../shared/services/api.service';
 
 interface IContactsProps {}
 interface IContactsState {
@@ -29,7 +30,7 @@ export default class Contacts extends Component<IContactsProps, IContactsState> 
   }
 
   async loadContacts(): Promise<void> {
-    const data: IContent = await ApiService.getInstance().getContent(ContentTagEnum.CONTACTS);
+    const data: IContent = await apiService.getContent(ContentTagEnum.CONTACTS);
     this.setState({
       title: data.title,
       summary: data.summary,
