@@ -1,4 +1,4 @@
-import axios, {AxiosResponse} from 'axios';
+import axios, {AxiosInstance, AxiosResponse} from 'axios';
 
 import { IApiService } from "./model/IApiService";
 import { ContentTagEnum } from "../model/ContentTagEnum";
@@ -21,6 +21,9 @@ import { IApiContentGroupResponse } from './model/IApiContentGroupResponse';
 export class ApiService implements IApiService {
 
   private static instance: ApiService;
+  private http: AxiosInstance = axios.create({
+    baseURL: "https://www.api.tncreate.pt/v1.0"
+  });
 
   public static getInstance(): ApiService {
     if (!this.instance) {
@@ -30,61 +33,61 @@ export class ApiService implements IApiService {
   }
 
   public async getSocial(): Promise<ISocial[]> {
-    return axios.get(`https://www.api.tncreate.pt/v1.0/pt/tiagonolasco/social?sort=order&direction=ASC`)
+    return this.http.get(`/pt/tiagonolasco/social?sort=order&direction=ASC`)
       .then(this.navigateAxios)
       .then((res: IApiSocialResponse) => res.data);
   }
 
   public async getI18n(): Promise<II18n[]> {
-    return axios.get(`https://www.api.tncreate.pt/v1.0/pt/tiagonolasco/i18n`)
+    return this.http.get(`/pt/tiagonolasco/i18n`)
       .then(this.navigateAxios)
       .then((res: IApiI18nResponse) => res.data);
   }
 
   public async getSeo(): Promise<ISeo> {
-    return axios.get(`https://www.api.tncreate.pt/v1.0/pt/tiagonolasco/seo`)
+    return this.http.get(`/pt/tiagonolasco/seo`)
       .then(this.navigateAxios)
       .then((res: IApiSeoResponse) => res.data);
   }
 
   public async getContent(tag: ContentTagEnum): Promise<IContent> {
-    return axios.get(`https://www.api.tncreate.pt/v1.0/pt/tiagonolasco/content/${tag}`)
+    return this.http.get(`/pt/tiagonolasco/content/${tag}`)
       .then(this.navigateAxios)
       .then((res: IApiContentResponse) => res.data);
   }
 
   public async getSkills(): Promise<IContentSkills[]> {
-    return axios.get(`https://www.api.tncreate.pt/v1.0/pt/tiagonolasco/content_skills?fields=score&sort=order&direction=ASC`)
+    return this.http.get(`/pt/tiagonolasco/content_skills?fields=score,idcat,idsubcat&sort=order&direction=ASC`)
       .then(this.navigateAxios)
       .then((res: IApiSkillsResponse) => res.data);
   }
 
   public async getFoundations(): Promise<IContent[]> {
-    return axios.get(`https://www.api.tncreate.pt/v1.0/pt/tiagonolasco/content_foundations?sort=order&direction=ASC`)
+    return this.http.get(`/pt/tiagonolasco/content_foundations?sort=order&direction=ASC`)
       .then(this.navigateAxios)
       .then((res: IApiContentGroupResponse) => res.data);
   }
   
   public async getPersonal(): Promise<IContentTimeline[]> {
-    return axios.get(`https://www.api.tncreate.pt/v1.0/pt/tiagonolasco/content_personal?fields=initDate,isSideNote&sort=initdate&direction=ASC`)
+    return this.http.get(`/pt/tiagonolasco/content_personal?fields=initDate,isSideNote&sort=initdate&direction=ASC`)
       .then(this.navigateAxios)
       .then((res: IApiTimelineResponse) => res.data);
   }
 
   public async getProfessional(): Promise<IContentTimeline[]> {
-    return axios.get(`https://www.api.tncreate.pt/v1.0/pt/tiagonolasco/content_professional?fields=initDate,isSideNote&sort=initdate&direction=ASC`)
+    return this.http.get(`/pt/tiagonolasco/content_professional?fields=initDate,isSideNote&sort=initdate&direction=ASC`)
       .then(this.navigateAxios)
       .then((res: IApiTimelineResponse) => res.data);
   }
 
   public async getAcademy(): Promise<IContentTimeline[]> {
-    return axios.get(`https://www.api.tncreate.pt/v1.0/pt/tiagonolasco/content_academy?fields=initDate,endDate,isSideNote&sort=initdate&direction=ASC`)
+    return this.http.get(`/pt/tiagonolasco/content_academy?fields=initDate,endDate,isSideNote&sort=initdate&direction=ASC`)
       .then(this.navigateAxios)
       .then((res: IApiTimelineResponse) => res.data);
   }
 
   public async getProjects(): Promise<IContentProjects[]> {
-    return axios.get(`https://www.api.tncreate.pt/v1.0/pt/tiagonolasco/content_projects?fields=url&sort=title&direction=ASC`)
+    return this.http.get(`/pt/tiagonolasco/content_projects?fields=url&sort=title&direction=ASC`)
       .then(this.navigateAxios)
       .then((res: IApiProjectsResponse) => res.data);
   }
