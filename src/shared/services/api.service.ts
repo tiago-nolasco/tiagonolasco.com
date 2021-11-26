@@ -17,83 +17,117 @@ import { IApiSkillsResponse } from './model/IApiSkillsResponse';
 import { IApiTimelineResponse } from './model/IApiTimelineResponse';
 import { IApiProjectsResponse } from './model/IApiProjectsResponse';
 import { IApiContentGroupResponse } from './model/IApiContentGroupResponse';
+import { IApiResponse } from './model/IApiResponse';
 
-export class ApiService implements IApiService {
+enum SortDirectionEnum {
+  ASC = "ASC",
+  DESC = "DESC"
+}
 
-  private static instance: ApiService;
+interface IHttpGetParams {
+  fields?: string[];
+  sort?: string;
+  direction?: SortDirectionEnum;
+}
+
+class ApiService implements IApiService {
+
+  private lang = "pt";
+  private website = "tiagonolasco";
   private http: AxiosInstance = axios.create({
     baseURL: "https://www.api.tncreate.pt/v1.0"
   });
 
-  public static getInstance(): ApiService {
-    if (!this.instance) {
-      this.instance = new ApiService();
-    }
-    return this.instance;
+  public getSocial(): Promise<ISocial[]> {
+    return this.httpGet("social", {
+      sort: "order",
+      direction: SortDirectionEnum.ASC
+    });
   }
 
-  public async getSocial(): Promise<ISocial[]> {
-    return this.http.get(`/pt/tiagonolasco/social?sort=order&direction=ASC`)
-      .then(this.navigateAxios)
-      .then((res: IApiSocialResponse) => res.data);
+  public getI18n(): Promise<II18n[]> {
+    return this.httpGet("i18n");
   }
 
-  public async getI18n(): Promise<II18n[]> {
-    return this.http.get(`/pt/tiagonolasco/i18n`)
-      .then(this.navigateAxios)
-      .then((res: IApiI18nResponse) => res.data);
+  public getSeo(): Promise<ISeo> {
+    return this.httpGet("seo");
   }
 
-  public async getSeo(): Promise<ISeo> {
-    return this.http.get(`/pt/tiagonolasco/seo`)
-      .then(this.navigateAxios)
-      .then((res: IApiSeoResponse) => res.data);
+  public getContent(tag: ContentTagEnum): Promise<IContent> {
+    return this.httpGet(`content/${tag}`);
   }
 
-  public async getContent(tag: ContentTagEnum): Promise<IContent> {
-    return this.http.get(`/pt/tiagonolasco/content/${tag}`)
-      .then(this.navigateAxios)
-      .then((res: IApiContentResponse) => res.data);
+  public getSkills(): Promise<IContentSkills[]> {
+    return this.httpGet("content_skills", {
+      fields: ["score", "idcat", "idsubcat"],
+      sort: "order",
+      direction: SortDirectionEnum.ASC
+    });
   }
 
-  public async getSkills(): Promise<IContentSkills[]> {
-    return this.http.get(`/pt/tiagonolasco/content_skills?fields=score,idcat,idsubcat&sort=order&direction=ASC`)
-      .then(this.navigateAxios)
-      .then((res: IApiSkillsResponse) => res.data);
-  }
-
-  public async getFoundations(): Promise<IContent[]> {
-    return this.http.get(`/pt/tiagonolasco/content_foundations?sort=order&direction=ASC`)
-      .then(this.navigateAxios)
-      .then((res: IApiContentGroupResponse) => res.data);
+  public getFoundations(): Promise<IContent[]> {
+    return this.httpGet("content_foundations", {
+      sort: "order",
+      direction: SortDirectionEnum.ASC
+    });
   }
   
-  public async getPersonal(): Promise<IContentTimeline[]> {
-    return this.http.get(`/pt/tiagonolasco/content_personal?fields=initDate,isSideNote&sort=initdate&direction=ASC`)
-      .then(this.navigateAxios)
-      .then((res: IApiTimelineResponse) => res.data);
+  public getPersonal(): Promise<IContentTimeline[]> {
+    return this.httpGet("content_personal", {
+      fields: ["initDate", "isSideNote"],
+      sort: "initdate",
+      direction: SortDirectionEnum.ASC
+    });
   }
 
-  public async getProfessional(): Promise<IContentTimeline[]> {
-    return this.http.get(`/pt/tiagonolasco/content_professional?fields=initDate,isSideNote&sort=initdate&direction=ASC`)
-      .then(this.navigateAxios)
-      .then((res: IApiTimelineResponse) => res.data);
+  public getProfessional(): Promise<IContentTimeline[]> {
+    return this.httpGet("content_professional", {
+      fields: ["initDate", "isSideNote"],
+      sort: "initdate",
+      direction: SortDirectionEnum.ASC
+    });
   }
 
-  public async getAcademy(): Promise<IContentTimeline[]> {
-    return this.http.get(`/pt/tiagonolasco/content_academy?fields=initDate,endDate,isSideNote&sort=initdate&direction=ASC`)
-      .then(this.navigateAxios)
-      .then((res: IApiTimelineResponse) => res.data);
+  public getAcademy(): Promise<IContentTimeline[]> {
+    return this.httpGet("content_academy", {
+      fields: ["initDate", "isSideNote"],
+      sort: "initdate",
+      direction: SortDirectionEnum.ASC
+    });
   }
 
-  public async getProjects(): Promise<IContentProjects[]> {
-    return this.http.get(`/pt/tiagonolasco/content_projects?fields=url&sort=title&direction=ASC`)
-      .then(this.navigateAxios)
-      .then((res: IApiProjectsResponse) => res.data);
+  public getProjects(): Promise<IContentProjects[]> {
+    return this.httpGet("content_projects", {
+      fields: ["url"],
+      sort: "title",
+      direction: SortDirectionEnum.ASC
+    });
   }
 
-  private navigateAxios(res: AxiosResponse): unknown {
-    return res.data;
+  private async httpGet<T>(endpoint: string, params?: IHttpGetParams): Promise<T> {
+    return await this.http.get(`${this.lang}/${this.website}/${endpoint+this.getQueryString(params)}`)
+      .then((res: AxiosResponse) => res.data)
+      .then((res: IApiResponse) => res.data) as T;
+  }
+
+  private getQueryString(params: IHttpGetParams): string {
+
+    const keys: string[] = params && Object.keys(params) || [];
+    if (keys.length === 0) return "";
+
+    const queryString: string[] = keys.reduce((acc: string[], key: string) => {
+      const param: string | string[] = params[key];
+      const value: string = param.constructor === Array ? param.join() : param as string;
+
+      acc.push(`${key}=${value}`);
+
+      return acc;
+    }, []);
+
+    return `?${queryString.join("&")}`;
   }
 
 }
+
+const apiService = new ApiService();
+export default apiService;
