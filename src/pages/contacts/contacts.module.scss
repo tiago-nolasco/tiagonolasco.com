@@ -29,13 +29,14 @@
   }
 
   >.__signature {
+    background: $c-gray-100;
+    color: $c-gray-40;
+
     >.__container {
       display: flex;
       flex-flow: row;
       padding-top: 10px;
       padding-bottom: 10px;
-      background: $c-gray-100;
-      color: $c-gray-40;
   
       >.__author {
         width: 100%;
