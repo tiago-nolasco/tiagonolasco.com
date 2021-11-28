@@ -13,12 +13,14 @@ import { ISocial } from './model/ISocial';
 
 enum SortDirectionEnum {
   ASC = "ASC",
-  DESC = "DESC"
+  DESC = "DESC",
+  RAND = "RAND"
 }
 
 interface IHttpGetParams {
   fields?: string[];
   sort?: string;
+  limit?: number;
   direction?: SortDirectionEnum;
 }
 
@@ -45,13 +47,20 @@ class ApiService implements IApiService {
     return this.httpGet("seo");
   }
 
+  public getQuotes(): Promise<IContent[]> {
+    return this.httpGet("content_quotes", {
+      limit: 2,
+      direction: SortDirectionEnum.RAND
+    });
+  }
+
   public getContent(tag: ContentTagEnum): Promise<IContent> {
     return this.httpGet(`content/${tag}`);
   }
 
   public getSkills(): Promise<IContentSkills[]> {
     return this.httpGet("content_skills", {
-      fields: ["score", "idcat", "idsubcat"],
+      fields: ["score", "idsubcat"],
       sort: "order",
       direction: SortDirectionEnum.ASC
     });
@@ -108,8 +117,8 @@ class ApiService implements IApiService {
     if (keys.length === 0) return "";
 
     const queryString: string[] = keys.reduce((acc: string[], key: string) => {
-      const param: string | string[] = params[key];
-      const value: string = param.constructor === Array ? param.join() : param as string;
+      const param: number | string | string[] = params[key];
+      const value: string = param.constructor === Array ? param.join() : param.toString();
 
       acc.push(`${key}=${value}`);
 

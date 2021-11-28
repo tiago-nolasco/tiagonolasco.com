@@ -14,16 +14,31 @@ import websiteStore from "../shared/store/website.store";
 
 import { ISeo } from "../shared/services/api/model/ISeo";
 import { ISocial } from "../shared/services/api/model/ISocial";
+import { II18n } from "../shared/services/api/model/II18n";
+import { IContent } from "../shared/services/api/model/IContent";
+import Quote from "../shared/components/quote/Quote";
 
-export default class Index extends Component {
+const enum QuoteEnum {
+  FIRST,
+  SECOND
+}
+
+interface IIndexState {
+  quotes: IContent[],
+  loading: boolean
+}
+
+export default class Index extends Component<IIndexState> {
 
   state = {
+    quotes: [] as IContent[],
     loading: true
   }
 
   async componentDidMount() {
+    this.loadQuotes();
     await this.loadStore();
-    this.setState({loading: false});
+    this.setState({ loading: false });
   }
 
   async loadStore(): Promise<void[]> {
@@ -45,8 +60,21 @@ export default class Index extends Component {
   }
 
   async loadI18n(): Promise<void> {
-    const i18n = await apiService.getI18n();
+    const i18n: II18n[] = await apiService.getI18n();
     websiteStore.i18n = i18n;
+  }
+
+  async loadQuotes(): Promise<void> {
+    const quotes: IContent[] = await apiService.getQuotes();
+    this.setState({ quotes });
+  }
+
+  getQuote(position: 0 | 1): IContent {
+    return this.state.quotes && this.state.quotes[position];
+  }
+
+  getQuoteHtml(quote: IContent): JSX.Element {
+    return quote ? <Quote quote={quote.description} author={quote.title} /> : null;
   }
 
   get seo(): ISeo {
@@ -68,8 +96,10 @@ export default class Index extends Component {
         <main>
           <Homepage />
           <About />
+          {this.getQuoteHtml(this.getQuote(QuoteEnum.FIRST))}
           <Skills />
           <Timeline />
+          {this.getQuoteHtml(this.getQuote(QuoteEnum.SECOND))}
           <Projects />
           <Contacts />
         </main>
