@@ -34,14 +34,14 @@
   max-width: 1280px;
   margin: 0 auto;
 
-  &.-offset-tops {
-    padding-top: 40px;
-    padding-bottom: 40px;
-  }
+  @include sides-padding();
+}
 
-  &.-offset-sides {
-    padding-left: 40px;
-    padding-right: 40px;
-  }
+.mini-container {
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
 
+  @include sides-padding();
 }
