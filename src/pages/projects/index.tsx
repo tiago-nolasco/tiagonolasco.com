@@ -79,7 +79,7 @@ export default class Projects extends Component<IProjectsProps, IProjectsState> 
         <div className={styles["__main-projects-list"]}>
           {this.getProjectsHtml(this.state.projects)}
         </div>
-        <div className={styles["__more-projects"]}>
+        <div className={`mini-container ${styles["__more-projects"]}`}>
           <div className={styles["__summary"]} dangerouslySetInnerHTML={{__html: this.state.summary}}></div>
           <div className={styles["__description"]} dangerouslySetInnerHTML={{__html: this.state.description}}></div>
         </div>

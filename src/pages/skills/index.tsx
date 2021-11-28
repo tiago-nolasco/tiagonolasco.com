@@ -119,7 +119,7 @@ export default class Skills extends Component<ISkillsProps, ISkillsState> {
         <div className={styles["__chart-list"]}>
           {this.getChartsHtml(this.state.skillsByCat)}
         </div>
-        <div className={styles["__description"]} dangerouslySetInnerHTML={{__html: this.state.description}}></div>
+        <div className="mini-container" dangerouslySetInnerHTML={{__html: this.state.description}}></div>
       </div>
     )
   }
