@@ -9,11 +9,15 @@ import { ContentTagEnum } from "../../shared/services/api/model/ContentTagEnum";
 import { IContentSkills } from "../../shared/services/api/model/IContentSkills";
 import { IContent } from "../../shared/services/api/model/IContent";
 
+interface ISkillsByCat {
+  [cat: string]: IContentSkills[];
+}
+
 interface ISkillsProps {}
 interface ISkillsState {
   title: string;
   description: string;
-  skills: IContentSkills[];
+  skillsByCat: ISkillsByCat;
 }
 
 export default class Skills extends Component<ISkillsProps, ISkillsState> {
@@ -22,16 +26,16 @@ export default class Skills extends Component<ISkillsProps, ISkillsState> {
   state = {
     title: "",
     description: "",
-    skills: [] as IContentSkills[]
+    skillsByCat: {} as ISkillsByCat
   }
 
   async componentDidMount(): Promise<void> {
-    this.loadTechnology();
+    this.loadSkillsContent();
     await this.loadSkills();
-    this.mountChart();
+    this.mountCharts();
   }
 
-  async loadTechnology(): Promise<void> {
+  async loadSkillsContent(): Promise<void> {
     const data: IContent = await apiService.getContent(ContentTagEnum.SKILLS);
     this.setState({
       title: data.title,
@@ -41,20 +45,41 @@ export default class Skills extends Component<ISkillsProps, ISkillsState> {
 
   async loadSkills(): Promise<void> {
     const skills: IContentSkills[] = await apiService.getSkills();
-    this.setState({ skills });
+    if (skills.length) {
+      this.buildCharts(skills);
+    }
   }
 
-  mountChart(): void {
+  buildCharts(skills: IContentSkills[]): void {
+    const skillsByCat: ISkillsByCat = skills
+        ?.sort((a: IContentSkills, b: IContentSkills) => a.title.localeCompare(b.title))
+        ?.reduce((acc: ISkillsByCat, skill: IContentSkills) => {
+        acc[skill.subCatName] = [
+          ...(acc[skill.subCatName] || []),
+          ...[skill]
+        ];
+        return acc;
+      }, {});
+    this.setState({ skillsByCat });
+  }
+
+  mountCharts(): void {
+    Object.keys(this.state.skillsByCat).forEach((category: string) => {
+      this.setChat(category, this.state.skillsByCat[category])
+    });
+  }
+
+  setChat(category: string, skills: IContentSkills[]): void {
     // @ts-ignore
-    const ctx = document.getElementById(this.chartId).getContext('2d');
+    const ctx = document.getElementById(category + "Chart").getContext('2d');
     new Chart(ctx, {
       type: "radar",
       // type: "polarArea",
       data: {
-        labels: this.state.skills.map((technologie: IContentSkills) => technologie.title),
+        labels: skills.map((technologie: IContentSkills) => technologie.title),
         datasets: [
           {
-            data: this.state.skills.map((technologie: IContentSkills) => +technologie.score),
+            data: skills.map((technologie: IContentSkills) => +technologie.score),
             backgroundColor: "rgba(11, 120, 160, 0.2)",
             borderColor: "rgba(11, 120, 160, 0.5)",
           },
@@ -76,23 +101,25 @@ export default class Skills extends Component<ISkillsProps, ISkillsState> {
     });
   }
 
-  getSkillsHtml(tecnologies: IContentSkills[]): JSX.Element[] {
-    return tecnologies.map((tecnology: IContentSkills) => (
-      <span className={styles["__technology"]}>{tecnology.title}</span>
-    ));
+  getChartsHtml(skillsByCat: ISkillsByCat): JSX.Element[] {
+    return Object.keys(skillsByCat).map((category: string, index: number) => {
+      return (
+        <div key={`chart-${index}`} className={styles["__canvas"]}>
+          <div className={`sub-title ${styles["__sub-title"]}`}>{category}</div>
+          <canvas id={`${category}Chart`} width="400" height="400"></canvas>
+        </div>
+      );
+    });
   }
 
   render() {
     return (
       <div className={`container -offset-sides -offset-tops ${styles["skills-component"]}`}>
-        <div className={styles['__info']}>
-          <div className="theme-color title">{this.state.title}</div>
-          <div className={styles["__description"]} dangerouslySetInnerHTML={{__html: this.state.description}}></div>
-          {/* <div className={styles["__skills"]}>{this.getSkillsHtml(this.state.skills)}</div> */}
+        <div className="theme-color title">{this.state.title}</div>
+        <div className={styles["__chart-list"]}>
+          {this.getChartsHtml(this.state.skillsByCat)}
         </div>
-        <div className={styles["__canvas"]}>
-          <canvas id={this.chartId} width="400" height="400"></canvas>
-        </div>
+        <div className={styles["__description"]} dangerouslySetInnerHTML={{__html: this.state.description}}></div>
       </div>
     )
   }

@@ -1,29 +1,32 @@
 @import "../../styles/settings/index";
 
 .skills-component {
-
   display: flex;
-  flex-flow: row;
+  flex-flow: column;
 
-  >.__info {
-    width: 60%;
+  >.__chart-list {
+    display: flex;
+    flex-flow: row;
+    flex-wrap: wrap;
+    justify-content: center;
 
-    .__skills {
-      display: flex;
-      flex-flow: row;
-      flex-wrap: wrap;
-      margin: 0 -5px;
+    >.__canvas {
+      width: 100%;
+      max-width: 400px;
+      padding: 20px;
 
-      >.__technology {
-        margin: 0 5px;
+      >.__sub-title {
+        text-align: center;
+        padding-bottom: 20px;
       }
     }
-
   }
 
-  >.__canvas {
-    flex: 1;
-    margin-left: 40px;
+  >.__description {
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+    text-align: center;
   }
 
 }
