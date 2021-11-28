@@ -1,9 +1,9 @@
 import { IWebsiteStoreState } from "./model/IWebsiteStoreState";
 import { IKeyValue } from "./model/IKeyValue";
 
-import { II18n } from '../model/II18n';
-import { ISeo } from "../model/ISeo";
-import { ISocial } from "../model/ISocial";
+import { II18n } from '../services/api/model/II18n';
+import { ISeo } from "../services/api/model/ISeo";
+import { ISocial } from "../services/api/model/ISocial";
 
 class WebsiteStore {
 

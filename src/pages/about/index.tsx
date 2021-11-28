@@ -1,14 +1,14 @@
 import { Component } from 'react';
 
-import apiService from "../../shared/services/api.service";
+import apiService from "../../shared/services/api/api.service";
 
 import styles from "./about.module.scss";
-import { IContentMedia } from '../../shared/model/IContentMedia';
-import { IContent } from '../../shared/model/IContent';
-import { ContentTagEnum } from "../../shared/model/ContentTagEnum";
-import Image from '../../shared/components/Image';
-import { ImageRatioEnum } from '../../shared/model/ImageRatioEnum';
-import { ImageOrientationEnum } from '../../shared/model/ImageOrientationEnum';
+import { IContentMedia } from '../../shared/services/api/model/IContentMedia';
+import { IContent } from '../../shared/services/api/model/IContent';
+import { ContentTagEnum } from "../../shared/services/api/model/ContentTagEnum";
+import Image from '../../shared/components/image/Image';
+import { ImageRatioEnum } from '../../shared/components/image/model/ImageRatioEnum';
+import { ImageOrientationEnum } from '../../shared/components/image/model/ImageOrientationEnum';
 
 interface IAboutContent {
   title: string;

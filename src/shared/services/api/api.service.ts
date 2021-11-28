@@ -1,15 +1,15 @@
 import axios, {AxiosInstance, AxiosResponse} from 'axios';
 
-import { ContentTagEnum } from "../model/ContentTagEnum";
+import { ContentTagEnum } from "./model/ContentTagEnum";
 import { IApiService } from "./model/IApiService";
 import { IApiResponse } from './model/IApiResponse';
-import { IContent } from '../model/IContent';
-import { IContentSkills } from "../model/IContentSkills";
-import { IContentTimeline } from "../model/IContentTimeline";
-import { IContentProjects } from "../model/IContentProjects";
-import { ISeo } from '../model/ISeo';
-import { II18n } from '../model/II18n';
-import { ISocial } from '../model/ISocial';
+import { IContent } from './model/IContent';
+import { IContentSkills } from "./model/IContentSkills";
+import { IContentTimeline } from "./model/IContentTimeline";
+import { IContentProjects } from "./model/IContentProjects";
+import { ISeo } from './model/ISeo';
+import { II18n } from './model/II18n';
+import { ISocial } from './model/ISocial';
 
 enum SortDirectionEnum {
   ASC = "ASC",

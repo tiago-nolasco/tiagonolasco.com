@@ -2,16 +2,16 @@ import { Component } from "react";
 
 import styles from "./homepage.module.scss";
 
-import Image from "../../shared/components/Image";
+import Image from "../../shared/components/image/Image";
 
-import apiService from "../../shared/services/api.service";
+import apiService from "../../shared/services/api/api.service";
 import websiteStore from '../../shared/store/website.store';
 
-import { ContentTagEnum } from "../../shared/model/ContentTagEnum";
-import { IContentMedia } from "../../shared/model/IContentMedia";
-import { ImageRatioEnum } from "../../shared/model/ImageRatioEnum";
-import { IContent } from "../../shared/model/IContent";
-import { ISocial } from "../../shared/model/ISocial";
+import { ContentTagEnum } from "../../shared/services/api/model/ContentTagEnum";
+import { IContentMedia } from "../../shared/services/api/model/IContentMedia";
+import { ImageRatioEnum } from "../../shared/components/image/model/ImageRatioEnum";
+import { IContent } from "../../shared/services/api/model/IContent";
+import { ISocial } from "../../shared/services/api/model/ISocial";
 
 interface IButton {
   text: string;

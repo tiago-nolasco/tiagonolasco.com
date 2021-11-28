@@ -1,4 +1,4 @@
-import { ImageAlignEnum } from './ImageAlignEnum';
+import { ImageAlignEnum } from "../../../components/image/model/ImageAlignEnum";
 
 export interface IContentMedia {
   title: string;

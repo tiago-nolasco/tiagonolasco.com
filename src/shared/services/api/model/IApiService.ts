@@ -1,4 +1,4 @@
-import { ISeo } from "../../model/ISeo";
+import { ISeo } from "./ISeo";
 
 export interface IApiService {
   getSeo(): Promise<ISeo>;

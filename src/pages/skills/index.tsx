@@ -3,11 +3,11 @@ import Chart from 'chart.js/auto';
 
 import styles from "./skills.module.scss";
 
-import apiService from "../../shared/services/api.service";
+import apiService from "../../shared/services/api/api.service";
 
-import { ContentTagEnum } from "../../shared/model/ContentTagEnum";
-import { IContentSkills } from "../../shared/model/IContentSkills";
-import { IContent } from "../../shared/model/IContent";
+import { ContentTagEnum } from "../../shared/services/api/model/ContentTagEnum";
+import { IContentSkills } from "../../shared/services/api/model/IContentSkills";
+import { IContent } from "../../shared/services/api/model/IContent";
 
 interface ISkillsProps {}
 interface ISkillsState {

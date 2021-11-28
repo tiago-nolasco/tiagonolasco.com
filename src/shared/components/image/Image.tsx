@@ -1,8 +1,8 @@
 import styles from "./Image.module.scss";
 
 import { Component } from "react";
-import { ImageRatioEnum } from "../model/ImageRatioEnum";
-import { ImageOrientationEnum } from "../model/ImageOrientationEnum";
+import { ImageRatioEnum } from "./model/ImageRatioEnum";
+import { ImageOrientationEnum } from "./model/ImageOrientationEnum";
 
 interface IImageProps {
   src: string;

@@ -2,10 +2,10 @@ import { Component } from "react";
 
 import styles from "./timeline.module.scss";
 
-import apiService from "../../shared/services/api.service";
+import apiService from "../../shared/services/api/api.service";
 import websiteStore from '../../shared/store/website.store';
 
-import { IContentTimeline } from "../../shared/model/IContentTimeline";
+import { IContentTimeline } from "../../shared/services/api/model/IContentTimeline";
 
 const enum EventTypeEnum {
   PROFESSIONAL = "professional",

@@ -2,15 +2,15 @@ import { Component } from "react";
 
 import styles from "./projects.module.scss";
 
-import apiService from "../../shared/services/api.service";
+import apiService from "../../shared/services/api/api.service";
 import websiteStore from "../../shared/store/website.store";
 
-import Image from "../../shared/components/Image";
-import { IContentMedia } from "../../shared/model/IContentMedia";
-import { ImageRatioEnum } from "../../shared/model/ImageRatioEnum";
-import { IContentProjects } from "../../shared/model/IContentProjects";
-import { IContent } from "../../shared/model/IContent";
-import { ContentTagEnum } from "../../shared/model/ContentTagEnum";
+import Image from "../../shared/components/image/Image";
+import { IContentMedia } from "../../shared/services/api/model/IContentMedia";
+import { ImageRatioEnum } from "../../shared/components/image/model/ImageRatioEnum";
+import { IContentProjects } from "../../shared/services/api/model/IContentProjects";
+import { IContent } from "../../shared/services/api/model/IContent";
+import { ContentTagEnum } from "../../shared/services/api/model/ContentTagEnum";
 
 interface IProjectsProps {}
 interface IProjectsState {

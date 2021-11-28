@@ -9,11 +9,11 @@ import Timeline from "./timeline";
 import Projects from "./projects/";
 import Contacts from "./contacts/";
 
-import apiService from "../shared/services/api.service";
+import apiService from "../shared/services/api/api.service";
 import websiteStore from "../shared/store/website.store";
 
-import { ISeo } from "../shared/model/ISeo";
-import { ISocial } from "../shared/model/ISocial";
+import { ISeo } from "../shared/services/api/model/ISeo";
+import { ISocial } from "../shared/services/api/model/ISocial";
 
 export default class Index extends Component {
 

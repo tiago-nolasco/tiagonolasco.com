@@ -2,13 +2,13 @@ import { Component } from 'react';
 
 import styles from "./contacts.module.scss";
 
-import apiService from "../../shared/services/api.service";
+import apiService from "../../shared/services/api/api.service";
 import websiteStore from "../../shared/store/website.store";
 
-import { ISocial } from '../../shared/model/ISocial';
-import { ISeo } from '../../shared/model/ISeo';
-import { IContent } from '../../shared/model/IContent';
-import { ContentTagEnum } from '../../shared/model/ContentTagEnum';
+import { ISocial } from '../../shared/services/api/model/ISocial';
+import { ISeo } from '../../shared/services/api/model/ISeo';
+import { IContent } from '../../shared/services/api/model/IContent';
+import { ContentTagEnum } from '../../shared/services/api/model/ContentTagEnum';
 
 interface IContactsProps {}
 interface IContactsState {
