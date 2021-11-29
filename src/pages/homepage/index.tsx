@@ -96,7 +96,7 @@ export default class Homepage extends Component<IHomepageProps, IHomepageState> 
   getButtonHtml(button: IButton): JSX.Element {
     return <a
       key={button.key}
-      className={`button ${button.class} ${styles["__button"]}`}
+      className={`button ${button.class || ""} ${styles["__button"]}`}
       href={button.href}
       target={button.target || "_blanc"}>{button.text}</a>;
   }
