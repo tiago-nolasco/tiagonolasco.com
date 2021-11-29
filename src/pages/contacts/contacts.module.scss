@@ -4,25 +4,47 @@
   background: $c-gray-80;
   font-size: 16px;
 
+  a {
+    transition: color .2s;
+
+    &:hover {
+      color: $c-white;
+      transition: color .2s;
+    }
+  }
+
   >.__contacts {
     >.__container {
       display: flex;
       flex-flow: row;
-      flex-wrap: wrap;
 
-      >.__text {
-        color: $c-white;
+      >.__section {
+        display: flex;
+        flex-flow: row;
+        flex-wrap: wrap;
+        width: 50%;
 
-        &.-title {
-          width: 100%;
-
-          &::after {
-            display: none;
-          }
+        +.__section {
+          text-align: right;
+          justify-content: end;
         }
 
-        >p {
-          margin: 0;
+        >.__text {
+          width: 50%;
+          color: $c-gray-10;
+  
+          &.-title {
+            width: 100%;
+            color: $c-white;
+  
+            &::after {
+              display: none;
+            }
+          }
+  
+          >p {
+            margin: 0;
+          }
         }
       }
     }
@@ -45,18 +67,10 @@
       >.__social {
         flex: 1;
         white-space: nowrap;
+        display: none;
   
         >.__link +.__link {
           margin-left: 20px;
-        }
-      }
-
-      a {
-        transition: color .2s;
-
-        &:hover {
-          color: $c-white;
-          transition: color .2s;
         }
       }
     }

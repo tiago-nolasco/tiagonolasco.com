@@ -10,32 +10,57 @@ import { ISeo } from '../../shared/services/api/model/ISeo';
 import { IContent } from '../../shared/services/api/model/IContent';
 import { ContentTagEnum } from '../../shared/services/api/model/ContentTagEnum';
 
+interface IContactSection {
+  title?: string;
+  summary?: string
+  description?: string;
+}
+
 interface IContactsProps {}
 interface IContactsState {
-  title: string;
-  summary: string
-  description: string;
+  contacts: IContactSection;
+  follow: IContactSection;
 }
 
 export default class Contacts extends Component<IContactsProps, IContactsState> {
 
   state = {
-    title: "",
-    summary: "",
-    description: ""
+    contacts: {} as IContactSection,
+    follow: {} as IContactSection
   };
 
   componentDidMount(): void {
     this.loadContacts();
+    this.loadFollow();
   }
 
   async loadContacts(): Promise<void> {
-    const data: IContent = await apiService.getContent(ContentTagEnum.CONTACTS);
-    this.setState({
-      title: data.title,
-      summary: data.summary,
-      description: data.description
-    });
+    const contacts: IContactSection = await this.getContactsSection(ContentTagEnum.CONTACTS);
+    this.setState({ contacts });
+  }
+
+  async loadFollow(): Promise<void> {
+    const follow: IContactSection = await this.getContactsSection(ContentTagEnum.FOLLOW);
+    this.setState({ follow });
+  }
+
+  async getContactsSection(section: ContentTagEnum): Promise<IContactSection> {
+    const data: IContent = await apiService.getContent(section);
+    return {
+      title: data?.title || "",
+      summary: data?.summary || "",
+      description: data?.description || ""
+    };
+  }
+
+  getContactsSectionHtml(section: IContactSection): JSX.Element {
+    return section ? (
+      <div className={styles["__section"]}>
+        <div className={`title ${styles["__text"]} ${styles["-title"]}`}>{section.title}</div>
+        {section.summary && <div className={styles["__text"]} dangerouslySetInnerHTML={{__html: section.summary}}></div>}
+        {section.description && <div className={styles["__text"]} dangerouslySetInnerHTML={{__html: section.description}}></div>}
+      </div>
+    ) : null;
   }
 
   getSignature(): string {
@@ -61,15 +86,14 @@ export default class Contacts extends Component<IContactsProps, IContactsState> 
       <div className={styles["contacts-component"]}>
         <div className={styles["__contacts"]}>
           <div className={`__website-container -offset-sides -offset-tops ${styles["__container"]}`}>
-            <div className={`title ${styles["__text"]} ${styles["-title"]}`}>{this.state.title}</div>
-            <div className={`${styles["__text"]} ${styles["-summary"]}`} dangerouslySetInnerHTML={{__html: this.state.summary}}></div>
-            <div className={`${styles["__text"]} ${styles["-description"]}`} dangerouslySetInnerHTML={{__html: this.state.description}}></div>
+            {this.getContactsSectionHtml(this.state.contacts)}
+            {this.getContactsSectionHtml(this.state.follow)}
           </div>
         </div>
         <div className={styles["__signature"]}>
           <div className={`__website-container -offset-sides ${styles["__container"]}`}>
             <div className={styles['__author']} dangerouslySetInnerHTML={{__html: this.getSignature()}}></div>
-            <div className={styles['__social']}>{this.getSocialHtml(websiteStore.social)}</div>
+            {/* <div className={styles['__social']}>{this.getSocialHtml(websiteStore.social)}</div> */}
           </div>
         </div>
       </div>

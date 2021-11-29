@@ -4,5 +4,6 @@ export const enum ContentTagEnum {
   ABOUT = "about",
   SKILLS = "skills",
   PROJECTS = "projects",
-  CONTACTS = "contacts"
+  CONTACTS = "contacts",
+  FOLLOW = "follow"
 }
