@@ -78,7 +78,7 @@ export default class About extends Component<IAboutProps, IAboutState> {
 
   render() {
     return (
-      <div className={`container -offset-sides -offset-tops ${styles["about-component"]}`}>
+      <div className={`__website-container -offset-sides -offset-tops ${styles["about-component"]}`}>
         {this.getImageHtml(this.state.image)}
         <div className={styles['__info']}>
           <div className="theme-color title">{this.state.title}</div>

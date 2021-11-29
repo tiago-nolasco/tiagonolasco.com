@@ -106,7 +106,7 @@ export default class Homepage extends Component<IHomepageProps, IHomepageState> 
       <div className={styles["homepage-component"]}>
         {this.getImageHtml(this.state.image)}
         <div className={styles["__info"]}>
-          <div className={`container -offset-sides ${styles["__container"]}`}>
+          <div className={`__website-container -offset-sides ${styles["__container"]}`}>
             <div className={styles["__role"]}>{this.state.title}</div>
             <div className={styles["__summary"]} dangerouslySetInnerHTML={{__html: this.state.summary}}></div>
             <div className={styles["__description"]} dangerouslySetInnerHTML={{__html: this.state.description}}></div>

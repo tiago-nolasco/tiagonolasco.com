@@ -114,12 +114,12 @@ export default class Skills extends Component<ISkillsProps, ISkillsState> {
 
   render() {
     return (
-      <div className={`container -offset-sides -offset-tops ${styles["skills-component"]}`}>
+      <div className={`__website-container -offset-sides -offset-tops ${styles["skills-component"]}`}>
         <div className="theme-color title">{this.state.title}</div>
         <div className={styles["__chart-list"]}>
           {this.getChartsHtml(this.state.skillsByCat)}
         </div>
-        <div className="mini-container" dangerouslySetInnerHTML={{__html: this.state.description}}></div>
+        <div className="__website-container -xs" dangerouslySetInnerHTML={{__html: this.state.description}}></div>
       </div>
     )
   }

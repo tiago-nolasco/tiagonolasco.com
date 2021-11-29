@@ -60,14 +60,14 @@ export default class Contacts extends Component<IContactsProps, IContactsState> 
     return (
       <div className={styles["contacts-component"]}>
         <div className={styles["__contacts"]}>
-          <div className={`container -offset-sides -offset-tops ${styles["__container"]}`}>
+          <div className={`__website-container -offset-sides -offset-tops ${styles["__container"]}`}>
             <div className={`title ${styles["__text"]} ${styles["-title"]}`}>{this.state.title}</div>
             <div className={`${styles["__text"]} ${styles["-summary"]}`} dangerouslySetInnerHTML={{__html: this.state.summary}}></div>
             <div className={`${styles["__text"]} ${styles["-description"]}`} dangerouslySetInnerHTML={{__html: this.state.description}}></div>
           </div>
         </div>
         <div className={styles["__signature"]}>
-          <div className={`container -offset-sides ${styles["__container"]}`}>
+          <div className={`__website-container -offset-sides ${styles["__container"]}`}>
             <div className={styles['__author']} dangerouslySetInnerHTML={{__html: this.getSignature()}}></div>
             <div className={styles['__social']}>{this.getSocialHtml(websiteStore.social)}</div>
           </div>

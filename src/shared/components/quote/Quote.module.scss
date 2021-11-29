@@ -1,24 +1,26 @@
 @import "../../../styles/settings/index";
 
 .quote-component {
-  font-size: 20px;
-  background-color: $c-gray-80;
-  color: $c-white;
+  >.__background {
+    font-size: 20px;
+    background-color: $c-gray-80;
+    color: $c-white;
 
-  >.__container {
-    text-align: center;
+    >.__container {
+      text-align: center;
 
-    >.__quote {
-      font-style: italic;
-      
-      >p {
-        margin: 0;
+      >.__quote {
+        font-style: italic;
+        
+        >p {
+          margin: 0;
+        }
       }
-    }
 
-    >.__author {
-      font-weight: bold;
-      padding-top: 10px;;
+      >.__author {
+        font-weight: bold;
+        padding-top: 10px;;
+      }
     }
   }
 }

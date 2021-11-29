@@ -74,12 +74,12 @@ export default class Projects extends Component<IProjectsProps, IProjectsState> 
 
   render() {
     return (
-      <div className={`container -offset-sides -offset-tops ${styles["projects-component"]}`}>
+      <div className={`__website-container -offset-sides -offset-tops ${styles["projects-component"]}`}>
         <div className="title theme-color">{websiteStore.getLabel("menu_projects")}</div>
         <div className={styles["__main-projects-list"]}>
           {this.getProjectsHtml(this.state.projects)}
         </div>
-        <div className={`mini-container ${styles["__more-projects"]}`}>
+        <div className={`__website-container -xs ${styles["__more-projects"]}`}>
           <div className={styles["__summary"]} dangerouslySetInnerHTML={{__html: this.state.summary}}></div>
           <div className={styles["__description"]} dangerouslySetInnerHTML={{__html: this.state.description}}></div>
         </div>
