@@ -52,7 +52,6 @@ export default class Skills extends Component<ISkillsProps, ISkillsState> {
 
   buildCharts(skills: IContentSkills[]): void {
     const skillsByCat: ISkillsByCat = skills
-        ?.sort((a: IContentSkills, b: IContentSkills) => a.title.localeCompare(b.title))
         ?.reduce((acc: ISkillsByCat, skill: IContentSkills) => {
         acc[skill.subCatName] = [
           ...(acc[skill.subCatName] || []),

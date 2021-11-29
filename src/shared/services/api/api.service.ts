@@ -61,7 +61,7 @@ class ApiService implements IApiService {
   public getSkills(): Promise<IContentSkills[]> {
     return this.httpGet("content_skills", {
       fields: ["score", "idsubcat"],
-      sort: "order",
+      sort: "title",
       direction: SortDirectionEnum.ASC
     });
   }
