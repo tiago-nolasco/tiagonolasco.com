@@ -10,7 +10,7 @@ interface IQuoteProps {
 export default class Quote extends Component<IQuoteProps> {
   render() {
     return (
-      <div className={`__website-container -lg -offset-tops ${styles["quote-component"]}`}>
+      <div className={styles["quote-component"]}>
         <div className={styles["__background"]}>
           <div className={`__website-container -xs -offset-sides -offset-tops ${styles["__container"]}`}>
             <div className={styles["__quote"]} dangerouslySetInnerHTML={{__html: this.props.quote}}></div>

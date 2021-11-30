@@ -47,9 +47,9 @@ class ApiService implements IApiService {
     return this.httpGet("seo");
   }
 
-  public getQuotes(): Promise<IContent[]> {
+  public getQuotes(): Promise<IContent> {
     return this.httpGet("content_quotes", {
-      limit: 2,
+      limit: 1,
       direction: SortDirectionEnum.RAND
     });
   }

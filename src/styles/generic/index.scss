@@ -34,12 +34,12 @@
   margin: 0 auto;
   max-width: 1280px;
 
-  .-xs {
+  &.-xs {
     max-width: 700px;
     text-align: center;
   }
 
-  .-lg {
+  &.-lg {
     max-width: none;
   }
 

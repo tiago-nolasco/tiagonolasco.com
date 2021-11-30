@@ -18,20 +18,15 @@ import { II18n } from "../shared/services/api/model/II18n";
 import { IContent } from "../shared/services/api/model/IContent";
 import Quote from "../shared/components/quote/Quote";
 
-const enum QuoteEnum {
-  FIRST,
-  SECOND
-}
-
 interface IIndexState {
-  quotes: IContent[],
+  quote: IContent,
   loading: boolean
 }
 
 export default class Index extends Component<IIndexState> {
 
   state = {
-    quotes: [] as IContent[],
+    quote: {} as IContent,
     loading: true
   }
 
@@ -65,12 +60,8 @@ export default class Index extends Component<IIndexState> {
   }
 
   async loadQuotes(): Promise<void> {
-    const quotes: IContent[] = await apiService.getQuotes();
-    this.setState({ quotes });
-  }
-
-  getQuote(position: 0 | 1): IContent {
-    return this.state.quotes && this.state.quotes[position];
+    const quote: IContent = await apiService.getQuotes();
+    this.setState({ quote });
   }
 
   getQuoteHtml(quote: IContent): JSX.Element {
@@ -96,10 +87,9 @@ export default class Index extends Component<IIndexState> {
         <main>
           <Homepage />
           <About />
-          {this.getQuoteHtml(this.getQuote(QuoteEnum.FIRST))}
           <Skills />
+          {this.getQuoteHtml(this.state.quote)}
           <Timeline />
-          {this.getQuoteHtml(this.getQuote(QuoteEnum.SECOND))}
           <Projects />
           <Contacts />
         </main>
