@@ -22,16 +22,9 @@
     }
   }
 
-  >.__more-projects {
-    >.__description {
-      display: flex;
-      flex-wrap: wrap;
-
-      >p {
-        width: 25%;
-        margin: 10px 0;
-        font-size: 20px;
-      }
+  >.__description {
+    >p:last-of-type {
+      margin-bottom: 0;
     }
   }
 }

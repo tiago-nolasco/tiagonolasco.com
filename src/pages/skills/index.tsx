@@ -83,6 +83,9 @@ export default class Skills extends Component<ISkillsProps, ISkillsState> {
             borderColor: "rgba(11, 120, 160, 0.5)",
           },
           {
+            data: [5],
+          },
+          {
             data: [0],
           }
         ]
@@ -118,7 +121,7 @@ export default class Skills extends Component<ISkillsProps, ISkillsState> {
         <div className={styles["__chart-list"]}>
           {this.getChartsHtml(this.state.skillsByCat)}
         </div>
-        <div className="__website-container -xs" dangerouslySetInnerHTML={{__html: this.state.description}}></div>
+        <div className={`__website-container -xs ${styles["__description"]}`} dangerouslySetInnerHTML={{__html: this.state.description}}></div>
       </div>
     )
   }
