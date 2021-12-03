@@ -121,8 +121,8 @@ export default class Timeline extends Component<ITimelineProps, ITimelineState> 
       <div className={styles["timeline-component"]}>
         <Container
           className={styles["__container"]}
-          topsOffset={true}
-          sidesOffset={true}>
+          topsOffset
+          sidesOffset>
             <div className={styles["__title-container"]}>
               <div className={`title theme-color ${styles["__sub-title"]} ${styles["-professional"]}`}>{this.getLabel("professional")}</div>
               <div className={`title theme-color ${styles["__title"]}`}>{this.getLabel("career")}</div>

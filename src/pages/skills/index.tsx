@@ -121,8 +121,8 @@ export default class Skills extends Component<ISkillsProps, ISkillsState> {
       <div className={styles["skills-component"]}>
         <Container
           className={styles["__container"]}
-          topsOffset={true}
-          sidesOffset={true}>
+          topsOffset
+          sidesOffset>
             <div className="theme-color title">{this.state.title}</div>
             <div className={styles["__chart-list"]}>
               {this.getChartsHtml(this.state.skillsByCat)}

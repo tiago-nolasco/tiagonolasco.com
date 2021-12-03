@@ -17,8 +17,8 @@ export default class Quote extends Component<IQuoteProps> {
           <Container
             className={styles["__container"]}
             size={ContainerSizeEnum.SMALL}
-            topsOffset={true}
-            sidesOffset={true}>
+            topsOffset
+            sidesOffset>
               <div className={styles["__quote"]} dangerouslySetInnerHTML={{__html: this.props.quote}}></div>
               <div className={styles["__author"]}>{this.props.author}</div>
             </Container>

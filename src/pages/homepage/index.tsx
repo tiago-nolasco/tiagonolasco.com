@@ -110,7 +110,7 @@ export default class Homepage extends Component<IHomepageProps, IHomepageState> 
         <div className={styles["__info"]}>
           <Container
             className={styles["__container"]}
-            sidesOffset={true}>
+            sidesOffset>
               <div className={styles["__role"]}>{this.state.title}</div>
               <div className={styles["__summary"]} dangerouslySetInnerHTML={{__html: this.state.summary}}></div>
               <div className={styles["__description"]} dangerouslySetInnerHTML={{__html: this.state.description}}></div>

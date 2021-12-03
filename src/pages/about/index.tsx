@@ -83,8 +83,8 @@ export default class About extends Component<IAboutProps, IAboutState> {
       <div className={styles["about-component"]}>
         <Container
           className={styles["__container"]}
-          topsOffset={true}
-          sidesOffset={true}>
+          topsOffset
+          sidesOffset>
             {this.getImageHtml(this.state.image)}
             <div className={styles['__info']}>
               <div className="theme-color title">{this.state.title}</div>
