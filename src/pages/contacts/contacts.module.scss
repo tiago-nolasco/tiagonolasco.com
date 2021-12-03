@@ -14,39 +14,37 @@
   }
 
   >.__contacts {
-    >.__container {
+    display: flex;
+    flex-flow: row;
+
+    >.__section {
       display: flex;
       flex-flow: row;
+      flex-wrap: wrap;
+      width: 50%;
 
-      >.__section {
-        display: flex;
-        flex-flow: row;
-        flex-wrap: wrap;
+      +.__section {
+        text-align: right;
+        justify-content: end;
+      }
+
+      >.__text {
         width: 50%;
+        color: $c-gray-10;
 
-        +.__section {
-          text-align: right;
-          justify-content: end;
+        &.-title {
+          width: 100%;
+          color: $c-white;
+          font-size: 22px;
+          line-height: 17px;
+
+          &::after {
+            display: none;
+          }
         }
 
-        >.__text {
-          width: 50%;
-          color: $c-gray-10;
-  
-          &.-title {
-            width: 100%;
-            color: $c-white;
-            font-size: 22px;
-            line-height: 17px;
-  
-            &::after {
-              display: none;
-            }
-          }
-  
-          >p {
-            margin: 0;
-          }
+        >p {
+          margin: 0;
         }
       }
     }

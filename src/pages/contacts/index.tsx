@@ -86,22 +86,20 @@ export default class Contacts extends Component<IContactsProps, IContactsState> 
   render() {
     return (
       <div className={styles["contacts-component"]}>
-        <div className={styles["__contacts"]}>
+        <Container
+          className={styles["__contacts"]}
+          topsOffset
+          sidesOffset>
+            {this.getContactsSectionHtml(this.state.contacts)}
+            {this.getContactsSectionHtml(this.state.follow)}
+          </Container>
+        <div className={styles["__signature"]}>
           <Container
             className={styles["__container"]}
-            topsOffset
             sidesOffset>
-              {this.getContactsSectionHtml(this.state.contacts)}
-              {this.getContactsSectionHtml(this.state.follow)}
+              <div className={styles['__author']} dangerouslySetInnerHTML={{__html: this.getSignature()}}></div>
+              {/* <div className={styles['__social']}>{this.getSocialHtml(websiteStore.social)}</div> */}
             </Container>
-        </div>
-        <div className={styles["__signature"]}>
-        <Container
-          className={styles["__container"]}
-          sidesOffset>
-            <div className={styles['__author']} dangerouslySetInnerHTML={{__html: this.getSignature()}}></div>
-            {/* <div className={styles['__social']}>{this.getSocialHtml(websiteStore.social)}</div> */}
-          </Container>
         </div>
       </div>
     )
