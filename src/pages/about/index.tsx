@@ -9,6 +9,8 @@ import { ContentTagEnum } from "../../shared/services/api/model/ContentTagEnum";
 import Image from '../../shared/components/image/Image';
 import { ImageRatioEnum } from '../../shared/components/image/model/ImageRatioEnum';
 import { ImageOrientationEnum } from '../../shared/components/image/model/ImageOrientationEnum';
+import Container from '../../shared/components/container/Container';
+import { ContainerSizeEnum } from '../../shared/components/container/model/ContainerSizeEnum';
 
 interface IAboutContent {
   title: string;
@@ -78,13 +80,19 @@ export default class About extends Component<IAboutProps, IAboutState> {
 
   render() {
     return (
-      <div className={`__website-container -offset-sides -offset-tops ${styles["about-component"]}`}>
-        {this.getImageHtml(this.state.image)}
-        <div className={styles['__info']}>
-          <div className="theme-color title">{this.state.title}</div>
-          <div dangerouslySetInnerHTML={{__html: this.state.description}}></div>
-          <div className={styles["__foundations"]}>{this.getFoundationsHtml(this.state.foundations)}</div>
-        </div>
+      <div className={styles["about-component"]}>
+        <Container
+          className={styles["__container"]}
+          size={ContainerSizeEnum.MEDIUM}
+          topsOffset={true}
+          sidesOffset={true}>
+            {this.getImageHtml(this.state.image)}
+            <div className={styles['__info']}>
+              <div className="theme-color title">{this.state.title}</div>
+              <div dangerouslySetInnerHTML={{__html: this.state.description}}></div>
+              <div className={styles["__foundations"]}>{this.getFoundationsHtml(this.state.foundations)}</div>
+            </div>  
+          </Container>
       </div>
     )
   }

@@ -8,6 +8,8 @@ import apiService from "../../shared/services/api/api.service";
 import { ContentTagEnum } from "../../shared/services/api/model/ContentTagEnum";
 import { IContentSkills } from "../../shared/services/api/model/IContentSkills";
 import { IContent } from "../../shared/services/api/model/IContent";
+import Container from "../../shared/components/container/Container";
+import { ContainerSizeEnum } from "../../shared/components/container/model/ContainerSizeEnum";
 
 interface ISkillsByCat {
   [cat: string]: IContentSkills[];
@@ -116,12 +118,22 @@ export default class Skills extends Component<ISkillsProps, ISkillsState> {
 
   render() {
     return (
-      <div className={`__website-container -offset-sides -offset-tops ${styles["skills-component"]}`}>
-        <div className="theme-color title">{this.state.title}</div>
-        <div className={styles["__chart-list"]}>
-          {this.getChartsHtml(this.state.skillsByCat)}
-        </div>
-        <div className={`__website-container -xs ${styles["__description"]}`} dangerouslySetInnerHTML={{__html: this.state.description}}></div>
+      <div className={styles["skills-component"]}>
+        <Container
+          className={styles["__container"]}
+          size={ContainerSizeEnum.MEDIUM}
+          topsOffset={true}
+          sidesOffset={true}>
+            <div className="theme-color title">{this.state.title}</div>
+            <div className={styles["__chart-list"]}>
+              {this.getChartsHtml(this.state.skillsByCat)}
+            </div>
+            <Container
+              className={styles["__description"]}
+              size={ContainerSizeEnum.SMALL}>
+                <div className={styles["__html-text"]} dangerouslySetInnerHTML={{__html: this.state.description}}></div>
+              </Container>
+          </Container>
       </div>
     )
   }

@@ -11,6 +11,8 @@ import { ImageRatioEnum } from "../../shared/components/image/model/ImageRatioEn
 import { IContentProjects } from "../../shared/services/api/model/IContentProjects";
 import { IContent } from "../../shared/services/api/model/IContent";
 import { ContentTagEnum } from "../../shared/services/api/model/ContentTagEnum";
+import Container from "../../shared/components/container/Container";
+import { ContainerSizeEnum } from "../../shared/components/container/model/ContainerSizeEnum";
 
 interface IProjectsProps {}
 interface IProjectsState {
@@ -74,12 +76,22 @@ export default class Projects extends Component<IProjectsProps, IProjectsState> 
 
   render() {
     return (
-      <div className={`__website-container -offset-sides -offset-tops ${styles["projects-component"]}`}>
-        <div className="title theme-color">{websiteStore.getLabel("menu_projects")}</div>
-        <div className={styles["__main-projects-list"]}>
-          {this.getProjectsHtml(this.state.projects)}
-        </div>
-        <div className={`__website-container -xs ${styles["__description"]}`} dangerouslySetInnerHTML={{__html: this.state.description}}></div>
+      <div className={styles["projects-component"]}>
+        <Container
+          className={styles["__container"]}
+          size={ContainerSizeEnum.MEDIUM}
+          topsOffset={true}
+          sidesOffset={true}>
+            <div className="title theme-color">{websiteStore.getLabel("menu_projects")}</div>
+            <div className={styles["__main-projects-list"]}>
+              {this.getProjectsHtml(this.state.projects)}
+            </div>
+            <Container
+              className={styles["__description"]}
+              size={ContainerSizeEnum.SMALL}>
+                <div className={styles["__html-text"]} dangerouslySetInnerHTML={{__html: this.state.description}}></div>
+              </Container>
+          </Container>
       </div>
     )
   }

@@ -6,6 +6,8 @@ import apiService from "../../shared/services/api/api.service";
 import websiteStore from '../../shared/store/website.store';
 
 import { IContentTimeline } from "../../shared/services/api/model/IContentTimeline";
+import Container from "../../shared/components/container/Container";
+import { ContainerSizeEnum } from "../../shared/components/container/model/ContainerSizeEnum";
 
 const enum EventTypeEnum {
   PROFESSIONAL = "professional",
@@ -116,19 +118,25 @@ export default class Timeline extends Component<ITimelineProps, ITimelineState> 
 
   render() {
     return (
-      <div className={`__website-container -offset-sides -offset-tops ${styles["timeline-component"]}`}>
-        <div className={styles["__title-container"]}>
-          <div className={`title theme-color ${styles["__sub-title"]} ${styles["-professional"]}`}>{this.getLabel("professional")}</div>
-          <div className={`title theme-color ${styles["__title"]}`}>{this.getLabel("career")}</div>
-          <div className={`title theme-color ${styles["__sub-title"]} ${styles["-academy"]}`}>{this.getLabel("academic")}</div>
-        </div>
-        <div className={styles["__timeline-container"]}>
-          <div className={styles["__timeline"]}></div>
-          <div className={styles["__events"]}>
-            {this.getEventsHtml(this.state)}
-          </div>
-          <div className={styles["__keep-comming"]}>{this.getLabel("keepComing")}</div>
-        </div>
+      <div className={styles["timeline-component"]}>
+        <Container
+          className={styles["__container"]}
+          size={ContainerSizeEnum.MEDIUM}
+          topsOffset={true}
+          sidesOffset={true}>
+            <div className={styles["__title-container"]}>
+              <div className={`title theme-color ${styles["__sub-title"]} ${styles["-professional"]}`}>{this.getLabel("professional")}</div>
+              <div className={`title theme-color ${styles["__title"]}`}>{this.getLabel("career")}</div>
+              <div className={`title theme-color ${styles["__sub-title"]} ${styles["-academy"]}`}>{this.getLabel("academic")}</div>
+            </div>
+            <div className={styles["__timeline-container"]}>
+              <div className={styles["__timeline"]}></div>
+              <div className={styles["__events"]}>
+                {this.getEventsHtml(this.state)}
+              </div>
+              <div className={styles["__keep-comming"]}>{this.getLabel("keepComing")}</div>
+            </div>
+          </Container>
       </div>
     )
   }

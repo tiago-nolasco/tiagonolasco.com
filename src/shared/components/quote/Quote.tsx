@@ -1,6 +1,8 @@
 import styles from "./Quote.module.scss";
 
 import { Component } from "react";
+import Container from "../container/Container";
+import { ContainerSizeEnum } from "../container/model/ContainerSizeEnum";
 
 interface IQuoteProps {
   quote: string;
@@ -12,10 +14,14 @@ export default class Quote extends Component<IQuoteProps> {
     return (
       <div className={styles["quote-component"]}>
         <div className={styles["__background"]}>
-          <div className={`__website-container -xs -offset-sides -offset-tops ${styles["__container"]}`}>
-            <div className={styles["__quote"]} dangerouslySetInnerHTML={{__html: this.props.quote}}></div>
-            <div className={styles["__author"]}>{this.props.author}</div>
-          </div>
+          <Container
+            className={styles["__container"]}
+            size={ContainerSizeEnum.SMALL}
+            topsOffset={true}
+            sidesOffset={true}>
+              <div className={styles["__quote"]} dangerouslySetInnerHTML={{__html: this.props.quote}}></div>
+              <div className={styles["__author"]}>{this.props.author}</div>
+            </Container>
         </div>
       </div>
     )

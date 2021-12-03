@@ -9,6 +9,8 @@ import { ISocial } from '../../shared/services/api/model/ISocial';
 import { ISeo } from '../../shared/services/api/model/ISeo';
 import { IContent } from '../../shared/services/api/model/IContent';
 import { ContentTagEnum } from '../../shared/services/api/model/ContentTagEnum';
+import Container from '../../shared/components/container/Container';
+import { ContainerSizeEnum } from '../../shared/components/container/model/ContainerSizeEnum';
 
 interface IContactSection {
   title?: string;
@@ -85,16 +87,23 @@ export default class Contacts extends Component<IContactsProps, IContactsState> 
     return (
       <div className={styles["contacts-component"]}>
         <div className={styles["__contacts"]}>
-          <div className={`__website-container -offset-sides -offset-tops ${styles["__container"]}`}>
-            {this.getContactsSectionHtml(this.state.contacts)}
-            {this.getContactsSectionHtml(this.state.follow)}
-          </div>
+          <Container
+            className={styles["__container"]}
+            size={ContainerSizeEnum.MEDIUM}
+            topsOffset={true}
+            sidesOffset={true}>
+              {this.getContactsSectionHtml(this.state.contacts)}
+              {this.getContactsSectionHtml(this.state.follow)}
+            </Container>
         </div>
         <div className={styles["__signature"]}>
-          <div className={`__website-container -offset-sides ${styles["__container"]}`}>
+        <Container
+          className={styles["__container"]}
+          size={ContainerSizeEnum.MEDIUM}
+          sidesOffset={true}>
             <div className={styles['__author']} dangerouslySetInnerHTML={{__html: this.getSignature()}}></div>
             {/* <div className={styles['__social']}>{this.getSocialHtml(websiteStore.social)}</div> */}
-          </div>
+          </Container>
         </div>
       </div>
     )

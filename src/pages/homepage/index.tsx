@@ -12,6 +12,8 @@ import { IContentMedia } from "../../shared/services/api/model/IContentMedia";
 import { ImageRatioEnum } from "../../shared/components/image/model/ImageRatioEnum";
 import { IContent } from "../../shared/services/api/model/IContent";
 import { ISocial } from "../../shared/services/api/model/ISocial";
+import Container from "../../shared/components/container/Container";
+import { ContainerSizeEnum } from "../../shared/components/container/model/ContainerSizeEnum";
 
 interface IButton {
   text: string;
@@ -105,17 +107,18 @@ export default class Homepage extends Component<IHomepageProps, IHomepageState> 
     return (
       <div className={styles["homepage-component"]}>
         {this.getImageHtml(this.state.image)}
-        <div className={styles["__info"]}>
-          <div className={`__website-container -offset-sides ${styles["__container"]}`}>
-            <div className={styles["__role"]}>{this.state.title}</div>
-            <div className={styles["__summary"]} dangerouslySetInnerHTML={{__html: this.state.summary}}></div>
-            <div className={styles["__description"]} dangerouslySetInnerHTML={{__html: this.state.description}}></div>
-            <div className={styles["__media"]}>
-              {this.getCvHtml(this.state.cv)}
-              {this.getSocialHtml(websiteStore.social)}
-            </div>
+        <Container
+          className={styles["__info"]}
+          size={ContainerSizeEnum.MEDIUM}
+          sidesOffset={true}>
+          <div className={styles["__role"]}>{this.state.title}</div>
+          <div className={styles["__summary"]} dangerouslySetInnerHTML={{__html: this.state.summary}}></div>
+          <div className={styles["__description"]} dangerouslySetInnerHTML={{__html: this.state.description}}></div>
+          <div className={styles["__media"]}>
+            {this.getCvHtml(this.state.cv)}
+            {this.getSocialHtml(websiteStore.social)}
           </div>
-        </div>
+        </Container>
       </div>
     )
   }
