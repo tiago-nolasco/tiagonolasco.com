@@ -107,18 +107,19 @@ export default class Homepage extends Component<IHomepageProps, IHomepageState> 
     return (
       <div className={styles["homepage-component"]}>
         {this.getImageHtml(this.state.image)}
-        <Container
-          className={styles["__info"]}
-          size={ContainerSizeEnum.MEDIUM}
-          sidesOffset={true}>
-          <div className={styles["__role"]}>{this.state.title}</div>
-          <div className={styles["__summary"]} dangerouslySetInnerHTML={{__html: this.state.summary}}></div>
-          <div className={styles["__description"]} dangerouslySetInnerHTML={{__html: this.state.description}}></div>
-          <div className={styles["__media"]}>
-            {this.getCvHtml(this.state.cv)}
-            {this.getSocialHtml(websiteStore.social)}
-          </div>
-        </Container>
+        <div className={styles["__info"]}>
+          <Container
+            className={styles["__container"]}
+            sidesOffset={true}>
+              <div className={styles["__role"]}>{this.state.title}</div>
+              <div className={styles["__summary"]} dangerouslySetInnerHTML={{__html: this.state.summary}}></div>
+              <div className={styles["__description"]} dangerouslySetInnerHTML={{__html: this.state.description}}></div>
+              <div className={styles["__media"]}>
+                {this.getCvHtml(this.state.cv)}
+                {this.getSocialHtml(websiteStore.social)}
+              </div>
+            </Container>
+        </div>
       </div>
     )
   }

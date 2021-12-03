@@ -13,7 +13,7 @@ interface IContainerProps {
 export default class Container extends Component<IContainerProps> {
 
   get sizeClass(): string {
-    return styles[`-${this.props.size || ContainerSizeEnum.LARGE}`];
+    return styles[`-${this.props.size || ContainerSizeEnum.MEDIUM}`];
   }
 
   get topsOffsetClass(): string {
@@ -26,7 +26,7 @@ export default class Container extends Component<IContainerProps> {
 
   render() {
     return (
-      <div className={`
+      <div className={`container-component
         ${styles["container-component"]}
         ${this.sizeClass}
         ${this.topsOffsetClass}

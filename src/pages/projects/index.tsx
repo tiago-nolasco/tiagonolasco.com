@@ -79,7 +79,6 @@ export default class Projects extends Component<IProjectsProps, IProjectsState> 
       <div className={styles["projects-component"]}>
         <Container
           className={styles["__container"]}
-          size={ContainerSizeEnum.MEDIUM}
           topsOffset={true}
           sidesOffset={true}>
             <div className="title theme-color">{websiteStore.getLabel("menu_projects")}</div>

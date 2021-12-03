@@ -89,7 +89,6 @@ export default class Contacts extends Component<IContactsProps, IContactsState> 
         <div className={styles["__contacts"]}>
           <Container
             className={styles["__container"]}
-            size={ContainerSizeEnum.MEDIUM}
             topsOffset={true}
             sidesOffset={true}>
               {this.getContactsSectionHtml(this.state.contacts)}
@@ -99,7 +98,6 @@ export default class Contacts extends Component<IContactsProps, IContactsState> 
         <div className={styles["__signature"]}>
         <Container
           className={styles["__container"]}
-          size={ContainerSizeEnum.MEDIUM}
           sidesOffset={true}>
             <div className={styles['__author']} dangerouslySetInnerHTML={{__html: this.getSignature()}}></div>
             {/* <div className={styles['__social']}>{this.getSocialHtml(websiteStore.social)}</div> */}

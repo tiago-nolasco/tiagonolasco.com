@@ -83,7 +83,6 @@ export default class About extends Component<IAboutProps, IAboutState> {
       <div className={styles["about-component"]}>
         <Container
           className={styles["__container"]}
-          size={ContainerSizeEnum.MEDIUM}
           topsOffset={true}
           sidesOffset={true}>
             {this.getImageHtml(this.state.image)}

@@ -121,7 +121,6 @@ export default class Skills extends Component<ISkillsProps, ISkillsState> {
       <div className={styles["skills-component"]}>
         <Container
           className={styles["__container"]}
-          size={ContainerSizeEnum.MEDIUM}
           topsOffset={true}
           sidesOffset={true}>
             <div className="theme-color title">{this.state.title}</div>

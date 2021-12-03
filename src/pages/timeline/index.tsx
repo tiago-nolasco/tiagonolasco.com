@@ -121,7 +121,6 @@ export default class Timeline extends Component<ITimelineProps, ITimelineState> 
       <div className={styles["timeline-component"]}>
         <Container
           className={styles["__container"]}
-          size={ContainerSizeEnum.MEDIUM}
           topsOffset={true}
           sidesOffset={true}>
             <div className={styles["__title-container"]}>
