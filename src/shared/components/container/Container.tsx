@@ -26,7 +26,7 @@ export default class Container extends Component<IContainerProps> {
 
   render() {
     return (
-      <div className={`container-component
+      <div className={`
         ${styles["container-component"]}
         ${this.sizeClass}
         ${this.topsOffsetClass}
