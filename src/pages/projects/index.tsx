@@ -13,6 +13,7 @@ import { IContent } from "../../shared/services/api/model/IContent";
 import { ContentTagEnum } from "../../shared/services/api/model/ContentTagEnum";
 import Container from "../../shared/components/container/Container";
 import { ContainerSizeEnum } from "../../shared/components/container/model/ContainerSizeEnum";
+import HtmlText from "../../shared/components/htmlText/HtmlText";
 
 interface IProjectsProps {}
 interface IProjectsState {
@@ -88,7 +89,7 @@ export default class Projects extends Component<IProjectsProps, IProjectsState> 
             <Container
               className={styles["__description"]}
               size={ContainerSizeEnum.SMALL}>
-                <div className={styles["__html-text"]} dangerouslySetInnerHTML={{__html: this.state.description}}></div>
+                <HtmlText className={styles["__html-text"]} text={this.state.description}></HtmlText>
               </Container>
           </Container>
       </div>

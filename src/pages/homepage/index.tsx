@@ -14,6 +14,7 @@ import { IContent } from "../../shared/services/api/model/IContent";
 import { ISocial } from "../../shared/services/api/model/ISocial";
 import Container from "../../shared/components/container/Container";
 import { ContainerSizeEnum } from "../../shared/components/container/model/ContainerSizeEnum";
+import HtmlText from "../../shared/components/htmlText/HtmlText";
 
 interface IButton {
   text: string;
@@ -111,8 +112,8 @@ export default class Homepage extends Component<IHomepageProps, IHomepageState> 
           className={styles["__info"]}
           sidesOffset>
             <div className={styles["__role"]}>{this.state.title}</div>
-            <div className={styles["__summary"]} dangerouslySetInnerHTML={{__html: this.state.summary}}></div>
-            <div className={styles["__description"]} dangerouslySetInnerHTML={{__html: this.state.description}}></div>
+            <HtmlText className={styles["__summary"]} text={this.state.summary}></HtmlText>
+            <HtmlText className={styles["__description"]} text={this.state.description}></HtmlText>
             <div className={styles["__media"]}>
               {this.getCvHtml(this.state.cv)}
               {this.getSocialHtml(websiteStore.social)}

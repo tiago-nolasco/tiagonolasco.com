@@ -10,6 +10,7 @@ import { IContentSkills } from "../../shared/services/api/model/IContentSkills";
 import { IContent } from "../../shared/services/api/model/IContent";
 import Container from "../../shared/components/container/Container";
 import { ContainerSizeEnum } from "../../shared/components/container/model/ContainerSizeEnum";
+import HtmlText from "../../shared/components/htmlText/HtmlText";
 
 interface ISkillsByCat {
   [cat: string]: IContentSkills[];
@@ -130,7 +131,7 @@ export default class Skills extends Component<ISkillsProps, ISkillsState> {
             <Container
               className={styles["__description"]}
               size={ContainerSizeEnum.SMALL}>
-                <div className={styles["__html-text"]} dangerouslySetInnerHTML={{__html: this.state.description}}></div>
+                <HtmlText className={styles["__html-text"]} text={this.state.description}></HtmlText>
               </Container>
           </Container>
       </div>

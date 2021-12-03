@@ -8,6 +8,7 @@ import websiteStore from '../../shared/store/website.store';
 import { IContentTimeline } from "../../shared/services/api/model/IContentTimeline";
 import Container from "../../shared/components/container/Container";
 import { ContainerSizeEnum } from "../../shared/components/container/model/ContainerSizeEnum";
+import HtmlText from "../../shared/components/htmlText/HtmlText";
 
 const enum EventTypeEnum {
   PROFESSIONAL = "professional",
@@ -77,7 +78,7 @@ export default class Timeline extends Component<ITimelineProps, ITimelineState> 
             <div className={`sub-title ${styles["__sub-title"]}`}>{event.title}</div>
             {this.getDateHtml(event)}
           </div>
-          <div className={styles["__second-line"]} dangerouslySetInnerHTML={{__html: event.description}}></div>
+          <HtmlText className={styles["__second-line"]} text={event.description}></HtmlText>
         </div>
       );
     });

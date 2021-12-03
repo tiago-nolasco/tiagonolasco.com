@@ -11,6 +11,7 @@ import { IContent } from '../../shared/services/api/model/IContent';
 import { ContentTagEnum } from '../../shared/services/api/model/ContentTagEnum';
 import Container from '../../shared/components/container/Container';
 import { ContainerSizeEnum } from '../../shared/components/container/model/ContainerSizeEnum';
+import HtmlText from '../../shared/components/htmlText/HtmlText';
 
 interface IContactSection {
   title?: string;
@@ -55,22 +56,22 @@ export default class Contacts extends Component<IContactsProps, IContactsState> 
     };
   }
 
-  getContactsSectionHtml(section: IContactSection): JSX.Element {
-    return section ? (
-      <div className={styles["__section"]}>
-        <div className={`title ${styles["__text"]} ${styles["-title"]}`}>{section.title}</div>
-        {section.summary && <div className={styles["__text"]} dangerouslySetInnerHTML={{__html: section.summary}}></div>}
-        {section.description && <div className={styles["__text"]} dangerouslySetInnerHTML={{__html: section.description}}></div>}
-      </div>
-    ) : null;
-  }
-
-  getSignature(): string {
+  get signature(): string {
     const seo: ISeo = websiteStore.seo;
     const signature: string = websiteStore.getLabel("developedBy")
       .replace("<author>", seo.author)
       .replace("<tncreate>", "<a target='blanc' href='https://www.tncreate.pt/'>tnCreate</a>")
     return `${seo.year} | ${signature}`;
+  }
+
+  getContactsSectionHtml(section: IContactSection): JSX.Element {
+    return section ? (
+      <div className={styles["__section"]}>
+        <div className={`title ${styles["__text"]} ${styles["-title"]}`}>{section.title}</div>
+        {section.summary && <HtmlText className={styles["__text"]} text={section.summary}></HtmlText>}
+        {section.description && <HtmlText className={styles["__text"]} text={section.description}></HtmlText>}
+      </div>
+    ) : null;
   }
 
   getSocialHtml(socialList: ISocial[]): JSX.Element[] {
@@ -97,7 +98,7 @@ export default class Contacts extends Component<IContactsProps, IContactsState> 
           <Container
             className={styles["__container"]}
             sidesOffset>
-              <div className={styles['__author']} dangerouslySetInnerHTML={{__html: this.getSignature()}}></div>
+              <HtmlText className={styles["__author"]} text={this.signature}></HtmlText>
               {/* <div className={styles['__social']}>{this.getSocialHtml(websiteStore.social)}</div> */}
             </Container>
         </div>

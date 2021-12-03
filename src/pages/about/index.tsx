@@ -11,6 +11,7 @@ import { ImageRatioEnum } from '../../shared/components/image/model/ImageRatioEn
 import { ImageOrientationEnum } from '../../shared/components/image/model/ImageOrientationEnum';
 import Container from '../../shared/components/container/Container';
 import { ContainerSizeEnum } from '../../shared/components/container/model/ContainerSizeEnum';
+import HtmlText from '../../shared/components/htmlText/HtmlText';
 
 interface IAboutContent {
   title: string;
@@ -72,7 +73,7 @@ export default class About extends Component<IAboutProps, IAboutState> {
       return (
         <div key={`about-skill-${index}`} className={styles["__skill"]}>
           <div className="sub-title">{skill.title}</div>
-          <div dangerouslySetInnerHTML={{__html: skill.description}}></div>
+          <HtmlText text={skill.description}></HtmlText>
         </div>
       );
     })
@@ -88,7 +89,7 @@ export default class About extends Component<IAboutProps, IAboutState> {
             {this.getImageHtml(this.state.image)}
             <div className={styles['__info']}>
               <div className="theme-color title">{this.state.title}</div>
-              <div dangerouslySetInnerHTML={{__html: this.state.description}}></div>
+              <HtmlText text={this.state.description}></HtmlText>
               <div className={styles["__foundations"]}>{this.getFoundationsHtml(this.state.foundations)}</div>
             </div>  
           </Container>
