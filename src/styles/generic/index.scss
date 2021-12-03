@@ -27,21 +27,3 @@
   font-size: 20px;
   font-weight: 700;
 }
-
-.__website-container {
-  position: relative;
-  width: 100%;
-  margin: 0 auto;
-  max-width: 1280px;
-
-  &.-xs {
-    max-width: 700px;
-    text-align: center;
-  }
-
-  &.-lg {
-    max-width: none;
-  }
-
-  @include sides-padding();
-}
