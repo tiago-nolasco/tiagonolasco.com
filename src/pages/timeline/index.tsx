@@ -7,7 +7,6 @@ import websiteStore from '../../shared/store/website.store';
 
 import { IContentTimeline } from "../../shared/services/api/model/IContentTimeline";
 import Container from "../../shared/components/container/Container";
-import { ContainerSizeEnum } from "../../shared/components/container/model/ContainerSizeEnum";
 import HtmlText from "../../shared/components/htmlText/HtmlText";
 
 const enum EventTypeEnum {

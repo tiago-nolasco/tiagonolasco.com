@@ -10,7 +10,6 @@ import Image from '../../shared/components/image/Image';
 import { ImageRatioEnum } from '../../shared/components/image/model/ImageRatioEnum';
 import { ImageOrientationEnum } from '../../shared/components/image/model/ImageOrientationEnum';
 import Container from '../../shared/components/container/Container';
-import { ContainerSizeEnum } from '../../shared/components/container/model/ContainerSizeEnum';
 import HtmlText from '../../shared/components/htmlText/HtmlText';
 
 interface IAboutContent {

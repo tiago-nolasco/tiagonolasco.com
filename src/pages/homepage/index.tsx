@@ -13,7 +13,6 @@ import { ImageRatioEnum } from "../../shared/components/image/model/ImageRatioEn
 import { IContent } from "../../shared/services/api/model/IContent";
 import { ISocial } from "../../shared/services/api/model/ISocial";
 import Container from "../../shared/components/container/Container";
-import { ContainerSizeEnum } from "../../shared/components/container/model/ContainerSizeEnum";
 import HtmlText from "../../shared/components/htmlText/HtmlText";
 
 interface IButton {

@@ -10,7 +10,6 @@ import { ISeo } from '../../shared/services/api/model/ISeo';
 import { IContent } from '../../shared/services/api/model/IContent';
 import { ContentTagEnum } from '../../shared/services/api/model/ContentTagEnum';
 import Container from '../../shared/components/container/Container';
-import { ContainerSizeEnum } from '../../shared/components/container/model/ContainerSizeEnum';
 import HtmlText from '../../shared/components/htmlText/HtmlText';
 
 interface IContactSection {
