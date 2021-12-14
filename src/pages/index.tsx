@@ -81,7 +81,7 @@ export default class Index extends Component<IIndexState> {
           <meta name="keywords" content={this.seo.keywords} />
           <meta name="author" content={this.seo.author} />
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-          <link rel="icon" href="/favicon.ico" />
+          <link rel="icon" href="/favicon.png" />
         </Head>
 
         <main>
