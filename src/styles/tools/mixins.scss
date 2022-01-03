@@ -1,0 +1,20 @@
+
+@mixin media-breakpoint-down($max) {
+  @if $max {
+    @media (max-width: $max) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
+
+@mixin media-breakpoint-up($min) {
+  @if $min {
+    @media (min-width: ($min + 1)) {
+      @content;
+    }
+  } @else {
+    @content;
+  }
+}
