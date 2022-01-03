@@ -67,8 +67,8 @@ export default class Contacts extends Component<IContactsProps, IContactsState> 
     return section ? (
       <div className={styles["__section"]}>
         <div className={`title ${styles["__text"]} ${styles["-title"]}`}>{section.title}</div>
-        {section.summary && <HtmlText className={styles["__text"]} text={section.summary}></HtmlText>}
-        {section.description && <HtmlText className={styles["__text"]} text={section.description}></HtmlText>}
+        {section.summary && <HtmlText className={`${styles["__text"]} ${styles["-description"]}`} text={section.summary}></HtmlText>}
+        {section.description && <HtmlText className={`${styles["__text"]} ${styles["-description"]}`} text={section.description}></HtmlText>}
       </div>
     ) : null;
   }

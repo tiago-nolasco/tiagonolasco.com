@@ -1,4 +1,5 @@
 @import "../../styles/settings/index";
+@import "../../styles/tools/index";
 
 .timeline-component {
   .__container {
@@ -8,9 +9,14 @@
   
       >.__title {
         flex: 1;
+        text-align: center;
   
         &:after {
-          display: none;
+          background-image: linear-gradient(to right, transparent, $ColorBlueChill, transparent);
+
+          @include media-breakpoint-up($breakpoint-md) {
+            display: none;
+          }
         }
       }
   
@@ -19,6 +25,10 @@
         font-weight: 300;
         text-transform: lowercase;
         line-height: 25px;
+
+        @include media-breakpoint-down($breakpoint-md) {
+          display: none;
+        }
   
         &.-academy {
           text-align: right;
@@ -49,6 +59,10 @@
           height: 60px;
           bottom: 0;
           background-image: linear-gradient(to bottom, transparent , $c-white);
+        }
+
+        @include media-breakpoint-down($breakpoint-md) {
+          background: $c-gray-40;
         }
       }
   
@@ -86,8 +100,10 @@
   
             &:hover {
               &:before {
-                transform: scale(1.2);
-                transition: transform .2s;
+                @include media-breakpoint-up($breakpoint-md) {
+                  transform: scale(1.2);
+                  transition: transform .2s;
+                }
               }
             }
   
@@ -112,16 +128,34 @@
               >.__date {
                 white-space: nowrap;
               }
+
             }
+
+            @include media-breakpoint-down($breakpoint-md) {
+              width: 100%;
+              padding-top: 15px;
+              text-align: center;
+            }
+
           }
   
           &.-professional {
             &:before {
               right: -10px;
+
+              @include media-breakpoint-down($breakpoint-md) {
+                right: 50%;
+                transform: translateX(50%);
+              }
             }
             &.-is-side-note {
               &:before {
                 right: -6px;
+
+                @include media-breakpoint-down($breakpoint-md) {
+                  right: 50%;
+                  transform: translateX(50%);
+                }
               }
             }
           }
@@ -133,11 +167,21 @@
             &:before {
               left: -10px;
               background: $ColorYukonGold;
+
+              @include media-breakpoint-down($breakpoint-md) {
+                left: 50%;
+                transform: translateX(-50%);
+              }
             }
   
             &.-is-side-note {
               &:before {
                 left: -6px;
+
+                @include media-breakpoint-down($breakpoint-md) {
+                  left: 50%;
+                  transform: translateX(-50%);
+                }
               }
             }
   
@@ -212,6 +256,40 @@
               line-height: 100%;
             }
           }
+
+          @include media-breakpoint-down($breakpoint-md) {
+            &.-academy,
+            &.-professional {
+              padding-bottom: 60px;
+              background-image: linear-gradient(to bottom, $c-white, 90%, transparent);
+              background-position: center;
+
+              >.__top-line {
+                display: none;
+              }
+
+              >.__first-line {
+                flex-flow: column;
+
+                >.__sub-title,
+                >.__date {
+                  width: 100%;
+                  text-align: center;
+
+                  &.__sub-title {
+                    order: 2;
+                  }
+                  &.__date {
+                    order: 1ww;
+                  }
+                }
+              }
+              >.__second-line {
+                text-align: center;
+              }
+            }
+          }
+
         }
       }
     }

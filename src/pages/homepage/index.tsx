@@ -106,18 +106,27 @@ export default class Homepage extends Component<IHomepageProps, IHomepageState> 
   render() {
     return (
       <div className={styles["homepage-component"]}>
-        {this.getImageHtml(this.state.image)}
-        <Container
-          className={styles["__info"]}
-          sidesOffset>
-            <div className={styles["__role"]}>{this.state.title}</div>
-            <HtmlText className={styles["__summary"]} text={this.state.summary}></HtmlText>
-            <HtmlText className={styles["__description"]} text={this.state.description}></HtmlText>
-            <div className={styles["__media"]}>
-              {this.getCvHtml(this.state.cv)}
-              {this.getSocialHtml(websiteStore.social)}
-            </div>
+        <div className={styles["__wrapper"]}>
+          {this.getImageHtml(this.state.image)}
+          <Container
+            className={styles["__info"]}
+            sidesOffset>
+              <div className={styles["__role"]}>{this.state.title}</div>
+              <HtmlText className={styles["__summary"]} text={this.state.summary}></HtmlText>
+              <HtmlText className={styles["__description"]} text={this.state.description}></HtmlText>
+              <div className={styles["__media"]}>
+                {this.getCvHtml(this.state.cv)}
+                {this.getSocialHtml(websiteStore.social)}
+              </div>
+            </Container>
+        </div>
+        <div className={styles["__description-md"]}>
+          <Container
+            topsOffset
+            sidesOffset>
+            <HtmlText text={this.state.description}></HtmlText>
           </Container>
+        </div>
       </div>
     )
   }

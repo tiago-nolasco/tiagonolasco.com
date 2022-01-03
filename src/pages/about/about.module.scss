@@ -1,14 +1,21 @@
+@import "../../styles/settings/index";
+@import "../../styles/tools/index";
 
 .about-component{
   >.__container {
     display: flex;
     flex-flow: row;
+    align-items: flex-start;
 
     >.__image {
       width: 30%;
       margin-right: 40px;
       border-radius: 10px;
       overflow: hidden;
+
+      @include media-breakpoint-down($breakpoint-md) {
+        display: none;
+      }
     }
 
     >.__info {
@@ -23,6 +30,10 @@
         >.__skill {
           width: 50%;
           padding: 10px 20px;
+
+          @include media-breakpoint-down($breakpoint-sm) {
+            width: 100%;
+          }
 
           p { margin: 0; }
         }

@@ -1,4 +1,5 @@
 @import "../../styles/settings/index";
+@import "../../styles/tools/index";
 
 .skills-component {
   >.__container {
@@ -16,9 +17,17 @@
         max-width: 400px;
         padding: 20px;
 
+        @include media-breakpoint-down($breakpoint-sm) {
+          padding: 20px 0;
+        }
+
         >.__sub-title {
           text-align: center;
           padding-bottom: 20px;
+
+          @include media-breakpoint-down($breakpoint-md) {
+            padding-bottom: 0;
+          }
         }
       }
     }
