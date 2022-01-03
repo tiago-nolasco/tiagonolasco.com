@@ -83,6 +83,7 @@
         >.__button {
           padding-left: 20px;
           padding-right: 20px;
+          white-space: nowrap;
 
           @include media-breakpoint-down($breakpoint-sm) {
             padding: 6px 15px;
