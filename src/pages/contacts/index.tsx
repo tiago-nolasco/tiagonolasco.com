@@ -58,9 +58,9 @@ export default class Contacts extends Component<IContactsProps, IContactsState> 
   get signature(): string {
     const seo: ISeo = websiteStore.seo;
     const signature: string = websiteStore.getLabel("developedBy")
-      .replace("<author>", seo.author)
+      .replace("<author>", seo?.author)
       .replace("<tncreate>", "<a target='blanc' href='https://www.tncreate.pt/'>tnCreate</a>")
-    return `${seo.year} | ${signature}`;
+    return `${seo?.year} | ${signature}`;
   }
 
   getContactsSectionHtml(section: IContactSection): JSX.Element {
