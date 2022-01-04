@@ -62,7 +62,7 @@
         }
 
         @include media-breakpoint-down($breakpoint-md) {
-          background: $c-gray-40;
+          background: $c-gray-5;
         }
       }
   
@@ -260,9 +260,9 @@
           @include media-breakpoint-down($breakpoint-md) {
             &.-academy,
             &.-professional {
-              padding-bottom: 60px;
-              background-image: linear-gradient(to bottom, $c-white, 90%, transparent);
-              background-position: center;
+              margin-bottom: 60px;
+              padding-bottom: 0;
+              background: rgba($c-white, .5);
 
               >.__top-line {
                 display: none;
